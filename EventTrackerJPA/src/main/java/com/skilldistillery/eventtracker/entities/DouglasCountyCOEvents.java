@@ -1,5 +1,7 @@
 package com.skilldistillery.eventtracker.entities;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,21 +11,21 @@ import javax.persistence.Id;
 @Entity
 public class DouglasCountyCOEvents {
 	/*
-		+----------------+--------------+------+-----+---------+----------------+
-		| Field          | Type         | Null | Key | Default | Extra          |
-		+----------------+--------------+------+-----+---------+----------------+
-		| id             | int(11)      | NO   | PRI | NULL    | auto_increment |
-		| title          | varchar(200) | NO   |     | NULL    |                |
-		| description    | text         | NO   |     | NULL    |                |
-		| event_category | varchar(100) | NO   |     | NULL    |                |
-		| start_date     | varchar(100) | NO   |     | NULL    |                |
-		| end_date       | varchar(100) | NO   |     | NULL    |                |
-		| location       | varchar(500) | YES  |     | NULL    |                |
-		| street         | varchar(200) | YES  |     | NULL    |                |
-		| city           | varchar(100) | YES  |     | NULL    |                |
-		| state          | varchar(2)   | NO   |     | NULL    |                |
-		| zip            | varchar(5)   | YES  |     | NULL    |                |
-		+----------------+--------------+------+-----+---------+----------------+
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| id             | int(11)      | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(200) | NO   |     | NULL    |                |
+| description    | text         | NO   |     | NULL    |                |
+| event_category | varchar(100) | NO   |     | NULL    |                |
+| start_date     | datetime     | NO   |     | NULL    |                |
+| end_date       | datetime     | NO   |     | NULL    |                |
+| location       | varchar(500) | YES  |     | NULL    |                |
+| street         | varchar(200) | YES  |     | NULL    |                |
+| city           | varchar(100) | YES  |     | NULL    |                |
+| state          | varchar(2)   | NO   |     | NULL    |                |
+| zip            | varchar(5)   | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
 	 */
 	
 ////////START OF FIELDS////////
@@ -40,10 +42,10 @@ public class DouglasCountyCOEvents {
 	private String eventCategory;
 	
 	@Column(name="start_date")
-	private String startDate;
+	private LocalDateTime startDate;
 	
 	@Column(name="end_date")
-	private String endDate;
+	private LocalDateTime endDate;
 	
 	private String location;
 	
@@ -63,9 +65,9 @@ public class DouglasCountyCOEvents {
 		super();
 	}
 	
-	
-	public DouglasCountyCOEvents(int id, String title, String description, String eventCategory, String startDate,
-			String endDate, String location, String street, String city, String state, String zip) {
+	public DouglasCountyCOEvents(int id, String title, String description, String eventCategory,
+			LocalDateTime startDate, LocalDateTime endDate, String location, String street, String city, String state,
+			String zip) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -79,7 +81,7 @@ public class DouglasCountyCOEvents {
 		this.state = state;
 		this.zip = zip;
 	}
-	
+
 	////////END OF CONSTRUCTORS////////
 	////////START OF GETTERS & SETTERS////////
 
@@ -124,25 +126,21 @@ public class DouglasCountyCOEvents {
 	}
 
 
-	public String getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
-
-	public void setStartDate(String startDate) {
+	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
 
-
-	public String getEndDate() {
+	public LocalDateTime getEndDate() {
 		return endDate;
 	}
 
-
-	public void setEndDate(String endDate) {
+	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
-
 
 	public String getLocation() {
 		return location;
@@ -195,6 +193,8 @@ public class DouglasCountyCOEvents {
 
 
 
+
+
 	////////END OF GETTERS & SETTERS////////
 	////////START OF HASH CODE////////
 	
@@ -215,6 +215,7 @@ public class DouglasCountyCOEvents {
 		result = prime * result + ((zip == null) ? 0 : zip.hashCode());
 		return result;
 	}
+	
 	
 	////////END OF HASH CODE////////
 	////////START OF EQUALS////////
@@ -284,7 +285,6 @@ public class DouglasCountyCOEvents {
 	}
 
 
-	
 	////////END OF EQUALS////////
 	////////START OF TO STRING////////
 	
