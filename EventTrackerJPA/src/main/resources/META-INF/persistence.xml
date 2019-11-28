@@ -9,7 +9,7 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<!-- Class Definitions / Entities Here -->
-		<class>com.skilldistillery.eventtracker.entities.FIXME</class>
+		<class>com.skilldistillery.eventtracker.entities.DouglasCountyCOEvents</class>
 
 
 

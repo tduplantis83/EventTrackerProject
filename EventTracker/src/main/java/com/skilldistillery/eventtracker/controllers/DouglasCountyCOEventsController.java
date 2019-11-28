@@ -53,7 +53,7 @@ public class DouglasCountyCOEventsController {
 
 	}
 	
-	@GetMapping("events/{title}")
+	@GetMapping("events/search/title/{title}")
 	public List<DouglasCountyCOEvents>  getEventByTitle(@PathVariable String title, HttpServletRequest req, HttpServletResponse resp) {
 		
 		List<DouglasCountyCOEvents> results = svc.selectByTitle(title);
@@ -66,7 +66,7 @@ public class DouglasCountyCOEventsController {
 		
 	}
 
-	@GetMapping("events/{desc}")
+	@GetMapping("events/search/description/{desc}")
 	public List<DouglasCountyCOEvents>  getEventByDesc(@PathVariable String desc, HttpServletRequest req, HttpServletResponse resp) {
 		
 		List<DouglasCountyCOEvents> results = svc.selectByDesc(desc);
@@ -79,7 +79,7 @@ public class DouglasCountyCOEventsController {
 		
 	}
 	
-	@GetMapping("events/{cat}")
+	@GetMapping("events/search/category/{cat}")
 	public List<DouglasCountyCOEvents>  getEventByCat(@PathVariable String cat, HttpServletRequest req, HttpServletResponse resp) {
 		
 		List<DouglasCountyCOEvents> results = svc.selectByCategory(cat);
@@ -92,10 +92,12 @@ public class DouglasCountyCOEventsController {
 		
 	}
 	
-	@GetMapping("events/{start}/{end}")
-	public List<DouglasCountyCOEvents>  getEventByStartDate(@PathVariable LocalDateTime start, @PathVariable LocalDateTime end, HttpServletRequest req, HttpServletResponse resp) {
+	@GetMapping("events/search/dateRange/{start}/{end}")
+	public List<DouglasCountyCOEvents>  getEventByStartDate(@PathVariable String start, @PathVariable String end, HttpServletRequest req, HttpServletResponse resp) {
+		LocalDateTime s = LocalDateTime.parse(start);
+		LocalDateTime e = LocalDateTime.parse(end);
 		
-		List<DouglasCountyCOEvents> results = svc.selectByStartDate(start, end);
+		List<DouglasCountyCOEvents> results = svc.selectByStartDate(s, e);
 		if (results == null) {
 			resp.setStatus(404);
 		} else {
@@ -105,7 +107,7 @@ public class DouglasCountyCOEventsController {
 		
 	}
 	
-	@GetMapping("events/{year}")
+	@GetMapping("events/search/year/{year}")
 	public List<DouglasCountyCOEvents>  getEventByStartDateYear(@PathVariable int year, HttpServletRequest req, HttpServletResponse resp) {
 		
 		List<DouglasCountyCOEvents> results = svc.selectByStartDateYear(year);
@@ -118,7 +120,7 @@ public class DouglasCountyCOEventsController {
 		
 	}
 	
-	@GetMapping("events/{year}/{month}")
+	@GetMapping("events/search/year/month/{year}/{month}")
 	public List<DouglasCountyCOEvents>  getEventByStartDateYearMonth(@PathVariable int year, @PathVariable int month, HttpServletRequest req, HttpServletResponse resp) {
 		
 		List<DouglasCountyCOEvents> results = svc.selectByStartDateYearAndMonth(year, month);
@@ -131,7 +133,7 @@ public class DouglasCountyCOEventsController {
 		
 	}
 	
-	@GetMapping("events/{location}")
+	@GetMapping("events/search/location/{location}")
 	public List<DouglasCountyCOEvents>  getEventByLocation(@PathVariable String location, HttpServletRequest req, HttpServletResponse resp) {
 		
 		List<DouglasCountyCOEvents> results = svc.selectByLocation(location);
@@ -144,7 +146,7 @@ public class DouglasCountyCOEventsController {
 		
 	}
 	
-	@GetMapping("events/{street}")
+	@GetMapping("events/search/street/{street}")
 	public List<DouglasCountyCOEvents>  getEventByStreet(@PathVariable String street, HttpServletRequest req, HttpServletResponse resp) {
 		
 		List<DouglasCountyCOEvents> results = svc.selectByStreetAddress(street);
@@ -157,7 +159,7 @@ public class DouglasCountyCOEventsController {
 		
 	}
 	
-	@GetMapping("events/{city}")
+	@GetMapping("events/search/city/{city}")
 	public List<DouglasCountyCOEvents>  getEventByCity(@PathVariable String city, HttpServletRequest req, HttpServletResponse resp) {
 		
 		List<DouglasCountyCOEvents> results = svc.selectByCity(city);
@@ -170,7 +172,7 @@ public class DouglasCountyCOEventsController {
 		
 	}
 	
-	@GetMapping("events/{state}")
+	@GetMapping("events/search/state/{state}")
 	public List<DouglasCountyCOEvents>  getEventByState(@PathVariable String state, HttpServletRequest req, HttpServletResponse resp) {
 		
 		List<DouglasCountyCOEvents> results = svc.selectByState(state);
@@ -183,7 +185,7 @@ public class DouglasCountyCOEventsController {
 		
 	}
 	
-	@GetMapping("events/{zip}")
+	@GetMapping("events/search/zip/{zip}")
 	public List<DouglasCountyCOEvents>  getEventByZip(@PathVariable String zip, HttpServletRequest req, HttpServletResponse resp) {
 		
 		List<DouglasCountyCOEvents> results = svc.selectByZip(zip);
@@ -196,7 +198,7 @@ public class DouglasCountyCOEventsController {
 		
 	}
 	
-	@GetMapping("events/{keyword}")
+	@GetMapping("events/search/{keyword}")
 	public List<DouglasCountyCOEvents>  getEventByKeyword(@PathVariable String keyword, HttpServletRequest req, HttpServletResponse resp) {
 		
 		List<DouglasCountyCOEvents> results = svc.selectByKeyword(keyword);
