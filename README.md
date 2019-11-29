@@ -1,6 +1,6 @@
-# Douglas County, CO Events
+# Event Tracker Project
 
-## Event Tracker Project
+## Douglas County, CO Events
 
 ### Skill Distillery Assignment
 Course Began: 9/9/19
@@ -12,7 +12,7 @@ Completed: 11/29/19
 Built by:
 * [Travis Duplantis](https://github.com/tduplantis83)
 
-This was a week-long sprint use Agile Methodologies to exceed the minimum viable product for our midterm  [project requirements](https://github.com/tduplantis83/EventTrackerProject/blob/master/PROJECTREQUIREMENTS.md).
+[Project Requirements](https://github.com/tduplantis83/EventTrackerProject/blob/master/PROJECTREQUIREMENTS.md).
 
 ### Overview:
 This program is designed to be a simple event tracker, utilizing Spring Boot, Spring Data JPA, and RestAPI. As assigned, the project currently has no front-end.
