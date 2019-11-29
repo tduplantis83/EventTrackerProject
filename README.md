@@ -12,54 +12,28 @@ Completed: 11/29/19
 Built by:
 * [Travis Duplantis](https://github.com/tduplantis83)
 
-This was a week-long sprint use Agile Methodologies to exceed the minimum viable product for our midterm  [project requirements](https://github.com/VentusSynergy/MidtermProject/blob/master/Assignment.md).
+This was a week-long sprint use Agile Methodologies to exceed the minimum viable product for our midterm  [project requirements](https://github.com/tduplantis83/EventTrackerProject/blob/master/PROJECTREQUIREMENTS.md).
 
 ### Overview:
-
-This program is designed to be a full stack website application that creates, reads, updates and deletes user and recipe data from a database we built using MySQL Workbench and connecting with using Java Database Connectivity.
+This program is designed to be a simple event tracker, utilizing Spring Boot, Spring Data JPA, and RestAPI. As assigned, the project currently has no front-end.
 
 ### How to run:
+This application is not designed with any front-end. Instead, it must be run within the Spring Tool Suite IDE. Within the IDE, the user may run all JUnit 5 test cases. The user may also verify mappings function correctly by utilizing Postman.
 
-First, the user enters the index page. The user can choose to:
-* Register as a user
-* Login if already a user
-* Search recipes (logged in or not logged in)
-
-Demo Account:
-* Email: marthaStewart@gmail.com
-* Password: marthaStewart
-
-A logged in user can:
-* Update their profile
-* Deactivate their profile
-* Add or remove recipes to their favorites list
-* Rate and make a review comment about a recipe
-* Remove the recipe review that they have made
-* Add a new recipe
-* Update any recipe
-* Deactivate a recipe they have created
-
-The admin user can:
-* Remove a review even if they did not create the review
-* Remove any recipe even if they did not create the recipe
-
-Admin Account:
-* Email: admin@nom.com
-* Password: admin
 
 ### Technologies used:
 
-Java, Java Persistence API, Spring MVC & STS, Gradle, SQL, MySQL Workbench, HTML, CSS, Bootstrap, Apache, Tomcat, AWS, Atom, Git, GitHub, and Trello.
+Java, Java Persistence API, Spring MVC & STS, Gradle, SQL, MySQL Workbench, Atom, Git, GitHub, Spring Data JPA, Spring Boot, RestAPI, JSON, & Postman
 
 ### Topics implemented:
 
-Dynamic Web Applications using Spring MVC.
+RestFul Services
 
-Tomcat 8 on AWS EC2 Instance.
+Spring Data JPA
 
-JSP Standard Tag Library to generate HTML.
+Data Serialization
 
-CCS and Bootstrap to make it web and mobile-friendly.
+HTTP Request & Response Objects
 
 Object-Relational Mapping (ORM).
 
@@ -69,15 +43,12 @@ Java Libraries: SQL, List, and handling exceptions.
 
 Object-Oriented Programming in Java: Abstraction, Polymorphism, Inheritance, and Encapsulation.
 
-Test Driven Development using JUNIT Juniper.
+Test Driven Development using JUNIT 5 Juniper.
 
 ### Lessons learned:
 
-This project helped us better grasp the capabilities of Dynamic Web Applications by allowing us to better learn how to:
-* Build a multi-table database using MySQL Workbench.
-* Be an Agile development team
-* Use branching on Git/GitHub
-* Understand Spring Application Contexts.
-* Use the Java Persistence API to generate HTML.
-* Build a Dynamic Web Applications using Spring MVC.
-* CCS and Bootstrap to make it web and mobile-friendly.
+This project helped me better grasp the capabilities of REST, Spring Data JPA, and HTTP Request and Response Objects. Over the course of the assignment I:
+* Built a single-table database & populated it using MySQL Workbench.
+* Utilized version tracking via Git/GitHub
+* Understand Spring (Boot & Data JPA)
+* Understand RESTAPI & URI naming schema
