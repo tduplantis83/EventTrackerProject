@@ -94,10 +94,8 @@ public class DouglasCountyCOEventsController {
 	
 	@GetMapping("events/search/dateRange/{start}/{end}")
 	public List<DouglasCountyCOEvents>  getEventByStartDate(@PathVariable String start, @PathVariable String end, HttpServletRequest req, HttpServletResponse resp) {
-		LocalDateTime s = LocalDateTime.parse(start);
-		LocalDateTime e = LocalDateTime.parse(end);
 		
-		List<DouglasCountyCOEvents> results = svc.selectByStartDate(s, e);
+		List<DouglasCountyCOEvents> results = svc.selectByStartDate(start, end);
 		if (results == null) {
 			resp.setStatus(404);
 		} else {
@@ -245,13 +243,8 @@ public class DouglasCountyCOEventsController {
 			if(d==null) {
 				resp.setStatus(404);
 			}
-			// if successful, send 201
-			resp.setStatus(201);
-			// get the link to the updated post
-			// return that in the Location header
-			StringBuffer url = req.getRequestURL();
-			url.append("/").append(d.getId());
-			resp.addHeader("Location", url.toString());
+			// if successful, send 200
+			resp.setStatus(200);
 		} catch (Exception e) {
 			// if update fails, return 404 error
 			e.printStackTrace();
@@ -264,7 +257,7 @@ public class DouglasCountyCOEventsController {
 
 	}
 	
-	@DeleteMapping("posts/{id}")
+	@DeleteMapping("events/{id}")
 	public void deleteEventById(@PathVariable Integer id, HttpServletRequest req, HttpServletResponse resp) {
 		
 		try {

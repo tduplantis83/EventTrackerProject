@@ -42,8 +42,11 @@ public class DouglasCountyCOEventsServiceImpl implements DouglasCountyCOEventsSe
 	}
 
 	@Override
-	public List<DouglasCountyCOEvents> selectByStartDate(LocalDateTime beginDate, LocalDateTime endDate) {
-		return repo.findByStartDateBetween(beginDate, endDate);
+	public List<DouglasCountyCOEvents> selectByStartDate(String beginDate, String endDate) {
+		LocalDateTime s = LocalDateTime.parse(beginDate);
+		LocalDateTime e = LocalDateTime.parse(endDate);
+		
+		return repo.findByStartDateBetween(s, e);
 	}
 	
 	@Override
@@ -89,7 +92,7 @@ public class DouglasCountyCOEventsServiceImpl implements DouglasCountyCOEventsSe
 
 	@Override
 	public List<DouglasCountyCOEvents> selectByState(String state) {
-		return repo.findByStateIgnoreCase("%" + state + "%");
+		return repo.findByStateIgnoreCase(state);
 	}
 
 	@Override
@@ -117,22 +120,33 @@ public class DouglasCountyCOEventsServiceImpl implements DouglasCountyCOEventsSe
 
 	@Override
 	public DouglasCountyCOEvents updateEvent(int id, DouglasCountyCOEvents event) {
-		DouglasCountyCOEvents toUpdate = repo.findById(event.getId());
+		DouglasCountyCOEvents toUpdate = repo.findById(id);
 		// if an event by that id exists
 		// and event still has ALL required fields
 		// we can update as requested by user
 		if (toUpdate != null && entityNulls(event)) {
+			//REQUIRED FIELDS
 			toUpdate.setTitle(event.getTitle());
 			toUpdate.setDescription(event.getDescription());
 			toUpdate.setEventCategory(event.getEventCategory());
 			toUpdate.setStartDate(event.getStartDate());
 			toUpdate.setEndDate(event.getEndDate());
-			toUpdate.setLocation(event.getLocation());
-			toUpdate.setStreet(event.getStreet());
-			toUpdate.setCity(event.getCity());
 			toUpdate.setState(event.getState());
-			toUpdate.setZip(event.getZip());
-
+			
+			//ALLOWED NULLS
+			if(event.getLocation() != null) {
+				toUpdate.setLocation(event.getLocation());
+			}
+			if(event.getStreet() != null) {
+				toUpdate.setStreet(event.getStreet());
+			}
+			if(event.getCity() != null) {
+				toUpdate.setCity(event.getCity());
+			}
+			if(event.getZip() != null) {
+				toUpdate.setZip(event.getZip());
+			}
+			
 			return repo.saveAndFlush(toUpdate);
 		}
 		return null;

@@ -11,7 +11,7 @@ public interface DouglasCountyCOEventsService {
 	public List<DouglasCountyCOEvents> selectByTitle(String title);
 	public List<DouglasCountyCOEvents> selectByDesc(String desc);
 	public List<DouglasCountyCOEvents> selectByCategory(String eventCategory);
-	public List<DouglasCountyCOEvents> selectByStartDate(LocalDateTime beginDate, LocalDateTime endDate);
+	public List<DouglasCountyCOEvents> selectByStartDate(String beginDate, String endDate);
 	public List<DouglasCountyCOEvents> selectByStartDateYear(int year);
 	List<DouglasCountyCOEvents> selectByStartDateYearAndMonth(int year, int month);
 	public List<DouglasCountyCOEvents> selectByLocation(String location);
