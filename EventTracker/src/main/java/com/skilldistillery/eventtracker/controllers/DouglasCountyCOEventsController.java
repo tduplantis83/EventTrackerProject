@@ -1,6 +1,5 @@
 package com.skilldistillery.eventtracker.controllers;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -270,7 +269,6 @@ public class DouglasCountyCOEventsController {
 				resp.setStatus(404);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			resp.setStatus(400);
 		}
