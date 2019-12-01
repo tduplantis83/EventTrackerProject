@@ -12,7 +12,9 @@ Completed: 11/29/19
 Built by:
 * [Travis Duplantis](https://github.com/tduplantis83)
 
-[Project Requirements](https://github.com/tduplantis83/EventTrackerProject/blob/master/PROJECTREQUIREMENTS.md).
+* [Project Requirements](https://github.com/tduplantis83/EventTrackerProject/blob/master/PROJECTREQUIREMENTS.md)
+
+* [REST Route Mapping & HTTP Methods](https://github.com/tduplantis83/EventTrackerProject/blob/master/RouteMapping.pdf)
 
 ### Overview:
 This program is designed to be a simple event tracker, utilizing Spring Boot, Spring Data JPA, and RestAPI. As assigned, the project currently has no front-end.
