@@ -10,13 +10,13 @@ Assigned: 11/27/19
 Completed: 11/29/19
 
 Built by:
-* [Travis Duplantis](https://github.com/tduplantis83){:target="_blank" rel="noopener"}
+* [Travis Duplantis](https://github.com/tduplantis83)
 
-* [Project Requirements](https://github.com/tduplantis83/EventTrackerProject/blob/master/PROJECTREQUIREMENTS.md){:target="_blank" rel="noopener"}
+* [Project Requirements](https://github.com/tduplantis83/EventTrackerProject/blob/master/PROJECTREQUIREMENTS.md)
 
-* [REST Route Mapping & HTTP Methods](https://github.com/tduplantis83/EventTrackerProject/blob/master/RouteMapping.pdf){:target="_blank" rel="noopener"}
+* [REST Route Mapping & HTTP Methods](https://github.com/tduplantis83/EventTrackerProject/blob/master/RouteMapping.pdf)
 
-* [AWS Deployed Event Tracker](http://18.190.145.109:8080/EventTracker/api/events){:target="_blank" rel="noopener"}
+* [AWS Deployed Event Tracker](http://18.190.145.109:8080/EventTracker/api/events)
 
 ### Overview:
 This program is designed to be a simple event tracker, utilizing Spring Boot, Spring Data JPA, and RestAPI. As assigned, the project currently has no front-end.
