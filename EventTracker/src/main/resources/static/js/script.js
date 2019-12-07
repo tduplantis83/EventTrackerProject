@@ -5,21 +5,42 @@ window.addEventListener('load', function(e){
 
 
 function init() {
+	let results = document.getElementById('searchResults');
+	let allButton = document.getElementById('allevents');
+	let allEventsButtonDiv = document.getElementById('alleventsDiv');
 	let searchButton = document.getElementById('search');
+	let searchEventsButtonDiv = document.getElementById('searcheventsDiv');
+	let createButton = document.getElementById('create');
+	let createEventsButtonDiv = document.getElementById('createeventsDiv');
+	
+	
+	// event listeners
+	allButton.addEventListener('click', function(e) {
+		allEventsButtonDiv.removeChild(allButton);
+		searchEventsButtonDiv.appendChild(searchButton);
+		displaySearchResults('api/events');
+	});
+	
+	
 	// event listeners
 	searchButton.addEventListener('click', function(e) {
-		searchButton.parentElement.removeChild(searchButton);
-		displayEventsSearch();
+		results.textContent = '';
+		searchEventsButtonDiv.removeChild(searchButton);
+		allEventsButtonDiv.appendChild(allButton);
+		displaySearchForm();
 	});
 
 }
 
+function displaySearchResults(uri){
+	let results = document.getElementById('searchResults');
+	let allButton = document.getElementById('allevents');
+	let searchButton = document.getElementById('search');
 
-function displayEventsSearch(){
-	var results = document.getElementById('searchResults');
+	
 	var xhr = new XMLHttpRequest();
 
-	xhr.open('GET', 'api/events', true);
+	xhr.open('GET', uri, true);
 
 	xhr.onreadystatechange = function() {
 
@@ -58,7 +79,6 @@ function displayEventsSearch(){
 		// cycle through data array to fill table with data
 		data.forEach(function(v, i , a) {
 			let row =  document.createElement('tr');
-			console.log(data);
 			// find the key names from data to use for the header data
 			for (let key in v) {
 				// create a column of data for each key value in this object
@@ -93,4 +113,14 @@ function displayEventsSearch(){
 
 xhr.send(null);
 
+};
+
+
+function displaySearchForm(){
+	let results = document.getElementById('searchResults');
+	let allButton = document.getElementById('allevents');
+	let searchButton = document.getElementById('search');
+	var searchForm = document.getElementById('searchForm');
+	
+	
 };
