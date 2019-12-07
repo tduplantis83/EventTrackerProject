@@ -12,22 +12,25 @@ function init() {
 	let searchEventsButtonDiv = document.getElementById('searcheventsDiv');
 	let createButton = document.getElementById('create');
 	let createEventsButtonDiv = document.getElementById('createeventsDiv');
+
 	
-	
-	// event listeners
+	// all events button listener
 	allButton.addEventListener('click', function(e) {
-		allEventsButtonDiv.removeChild(allButton);
-		searchEventsButtonDiv.appendChild(searchButton);
+		results.textContent = '';
 		displaySearchResults('api/events');
 	});
 	
-	
-	// event listeners
+	// search button listener
 	searchButton.addEventListener('click', function(e) {
 		results.textContent = '';
-		searchEventsButtonDiv.removeChild(searchButton);
-		allEventsButtonDiv.appendChild(allButton);
-		displaySearchForm();
+		location.href = "search.html";
+	});
+	
+	// create button listener
+	createButton.addEventListener('click', function(e) {
+		e.preventDefault();
+		results.textContent = '';
+		location.href = "create.html";
 	});
 
 }
@@ -36,7 +39,7 @@ function displaySearchResults(uri){
 	let results = document.getElementById('searchResults');
 	let allButton = document.getElementById('allevents');
 	let searchButton = document.getElementById('search');
-
+	let searchFormDiv = document.getElementById('searchForm');
 	
 	var xhr = new XMLHttpRequest();
 
@@ -60,41 +63,74 @@ function displaySearchResults(uri){
 		// create row for header
 		let headRow = document.createElement('tr');
 		
-		// find the key names from data to use for the header data
-		for (let heading in data[0]) {
-		    //create a header data element
-		    let headData = document.createElement('th');
+		if(Array.isArray(data)){
+			// find the key names from data to use for the header data
+			for (let heading in data[0]) {
+				//create a header data element
+				let headData = document.createElement('th');
 
-		    //fill it with the key names (& change first letter to toUpperCase)
-		    headData.textContent = heading.charAt(0).toUpperCase() + heading.slice(1);
+				//fill it with the key names (& change first letter to toUpperCase)
+				headData.textContent = heading.charAt(0).toUpperCase() + heading.slice(1);
 
-		    //add head data to the header row
-		    headRow.appendChild(headData);
+				//add head data to the header row
+				headRow.appendChild(headData);
 
-		    //add the header row to the table header
-		    dataTableHead.appendChild(headRow);
-		  }
+				//add the header row to the table header
+				dataTableHead.appendChild(headRow);
+			}
 
+			// cycle through data array to fill table with data
+			data.forEach(function(v, i , a) {
+				let row =  document.createElement('tr');
+				// find the key names from data to use for the  data
+				for (let key in v) {
+					// create a column of data for each key value in this object
+					let tabledata = document.createElement('td');
 
-		// cycle through data array to fill table with data
-		data.forEach(function(v, i , a) {
+					// set the data columns = to the key values
+					tabledata.textContent = v[key];
+			
+					// add those key values to the row
+					row.appendChild(tabledata);
+				}
+			
+				// add the row to the table body
+				dataTableBody.appendChild(row);
+
+			});
+		}	
+		else {
+			// find the key names from data to use for the header data
+			for (let heading in data) {
+				//create a header data element
+				let headData = document.createElement('th');
+
+				//fill it with the key names (& change first letter to toUpperCase)
+				headData.textContent = heading.charAt(0).toUpperCase() + heading.slice(1);
+
+				//add head data to the header row
+				headRow.appendChild(headData);
+
+				//add the header row to the table header
+				dataTableHead.appendChild(headRow);
+			}
+			
 			let row =  document.createElement('tr');
 			// find the key names from data to use for the header data
-			for (let key in v) {
+			for (let key in data) {
 				// create a column of data for each key value in this object
 				let tabledata = document.createElement('td');
 
 				// set the data columns = to the key values
-				tabledata.textContent = v[key];
-			
+				tabledata.textContent = data[key];
+		
 				// add those key values to the row
 				row.appendChild(tabledata);
-			  }
-			
+			}
+		
 			// add the row to the table body
 			dataTableBody.appendChild(row);
-
-		});
+		}
 
     // add the table header to the table
     dataTable.appendChild(dataTableHead);
@@ -103,6 +139,8 @@ function displaySearchResults(uri){
 
     // add the table to the document
     results.appendChild(dataTable);
+    
+    results.scrollIntoView({behavior: 'smooth'});
 
 	}
 
@@ -113,14 +151,4 @@ function displaySearchResults(uri){
 
 xhr.send(null);
 
-};
-
-
-function displaySearchForm(){
-	let results = document.getElementById('searchResults');
-	let allButton = document.getElementById('allevents');
-	let searchButton = document.getElementById('search');
-	var searchForm = document.getElementById('searchForm');
-	
-	
 };

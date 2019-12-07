@@ -9,3 +9,24 @@ body {
 h2 {
 	text-align: left;
 }
+
+.searchResults {
+	overflow-x: auto;
+}
+
+table {
+	background-color: #eaeaea
+}
+
+tr: hover {
+	background-color: #929292;
+}
+
+th, td {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+}
+
+th {
+	background-color: #929292;
+}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Douglas County, CO Events</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
-<script type="text/javascript" src="js/script.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/searchScript.js" charset="utf-8"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
@@ -16,35 +16,243 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-6">
-				<h3><a href="index.html" style="decoration: none">Douglas County, CO Events Tracker</a></h3>
+				<h3>
+					<a href="index.html" style="decoration: none">Douglas County,
+						CO Events Tracker</a>
+				</h3>
 			</div>
 			<div class="col-2">
-				<button id="allevents" type="button"
-					class="btn btn-primary btn-md text-nowrap btn-block">All Events</button>
+				<div id="alleventsDiv">
+					<button id="allevents" type="button"
+						class="btn btn-primary btn-md btn-block">All Events</button>
+				</div>
 			</div>
 			<div class="col-2">
-				<button id="search" type="button"
-					class="btn btn-info btn-md text-nowrap btn-block">Search Events</button>
+				<div id="searcheventsDiv">
+					<button id="search" type="button"
+						class="btn btn-info btn-md btn-block">Search Events</button>
+				</div>
 			</div>
 			<div class="col-2">
-				<button id="create" type="button"
-					class="btn btn-success btn-md text-nowrap btn-block">Create Event</button>
+				<div id="createeventsDiv">
+					<button id="create" type="button"
+						class="btn btn-success btn-md btn-block">Create Event</button>
+				</div>
 			</div>
 		</div>
 	</div>
 	<hr>
 	<br>
-	<!-- All Results... -->
-	<div class="container" id="searchByRadio">
+	<div class="container" id="searchById">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" id="eventID"
+							placeholder="Event ID">
+					</div>
+					<button id="eventIDButton" type="submit"
+						class="btn btn-info btn-block">Search by ID</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" id="keyword"
+							placeholder="Event Title, Desc, Category, Location, or City">
+					</div>
+					<button id="keywordButton" type="submit"
+						class="btn btn-info btn-block">Search by Keyword</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" id="eventTitle"
+							placeholder="Event Title">
+					</div>
+					<button id="eventTitleButton" type="submit"
+						class="btn btn-info btn-block">Search by Title</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" id="eventDesc"
+							placeholder="Event Description">
+					</div>
+					<button id="eventDescButton" type="submit"
+						class="btn btn-info btn-block">Search by Description</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" id="eventCat"
+							placeholder="Event Category">
+					</div>
+					<button id="eventCatButton" type="submit"
+						class="btn btn-info btn-block">Search by Category</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="datetime-local" class="form-control" id="startDate"
+							value="2019-11-01T00:00"> <br> <input
+							type="datetime-local" class="form-control" id="endDate"
+							value="2019-12-31T23:59">
+					</div>
+					<button id="dateBetweenButton" type="submit"
+						class="btn btn-info btn-block">Search by Date Range</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" id="year"
+							placeholder="Event Date Start Year">
+					</div>
+					<button id="yearButton" type="submit"
+						class="btn btn-info btn-block">Search by Year</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" id="monthY"
+							placeholder="Event Date Start Month"> <br> <input
+							type="text" class="form-control" id="yearM"
+							placeholder="Event Date Start Year">
+					</div>
+					<button id="yearMonthButton" type="submit"
+						class="btn btn-info btn-block">Search by Year & Month</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" id="location"
+							placeholder="Event Location">
+					</div>
+					<button id="locationButton" type="submit"
+						class="btn btn-info btn-block">Search by Location</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" id="street"
+							placeholder="Event Street Address">
+					</div>
+					<button id="streetButton" type="submit"
+						class="btn btn-info btn-block">Search by Street</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" id="city"
+							placeholder="Event City">
+					</div>
+					<button id="cityButton" type="submit"
+						class="btn btn-info btn-block">Search by City</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" id="state"
+							value="CO">
+					</div>
+					<button id="stateButton" type="submit"
+						class="btn btn-info btn-block">Search by State</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control" id="zip"
+							placeholder="Event Zip Code">
+					</div>
+					<button id="zipButton" type="submit"
+						class="btn btn-info btn-block">Search by Zip Code</button>
+				</form>
+			</div>
+			<div class="col-2"></div>
+		</div>
+	</div>
+	<br>
+	<br>
+
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
 				<div id="searchResults"></div>
 			</div>
 		</div>
 	</div>
-	<br>
-	<br>
-
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
