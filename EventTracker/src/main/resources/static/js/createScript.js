@@ -37,56 +37,45 @@ function init() {
 	
 	// create new event button listener
 	createEventButton.addEventListener('click', function(e) {
-		var title = document.createEventForm.title.value;
-		var description = document.createEventForm.description.value;
-		var category = document.createEventForm.category.value;
-		var startDate = document.createEventForm.startDate.value;
-		var endDate = document.createEventForm.endDate.value;
-		var location = document.createEventForm.location.value;
-		var street = document.createEventForm.street.value;
-		var city = document.createEventForm.city.value;
-		var state = document.createEventForm.state.value;
-		var zip = document.createEventForm.zip.value;
 
-		createNewEvent(title, description, category, startDate, endDate, location, street, city, state, zip);
-		
-		document.createForm.reset();
-	
-	
+		createNewEvent();
+//		document.createForm.reset();
 
 	});
 
-function createNewEvent(title, description, category, startDate, endDate, location, street, city, state, zip) {
+function createNewEvent() {
+	let thisButtonsForm = document.createForm;
+	
+	console.log(thisButtonsForm);
+	
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'api/events', true);
-
-	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON
 	// request body
-
+	xhr.open("POST", 'api/events', true);
+	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON
 	xhr.onreadystatechange = function() {
-		if (xhr.readyState === 4) {
-			if (xhr.status == 200 || xhr.status == 201) { // Ok or Created
-				var data = JSON.parse(xhr.responseText);
-				console.log(resposeText);
-// displaySearchResults('api/events');
-			} else {
-				console.log("POST request failed.");
-				console.error(xhr.status + ': ' + xhr.responseText);
-			}
+		
+		console.log(xhr.readyState);
+		console.log(xhr.responseText);
+		
+		if (xhr.readyState === 4 && xhr.status < 400) {
+			var userObject = JSON.parse(xhr.responseText);
+		}
+		if (xhr.readyState === 4 && xhr.status >= 400) {
+			console.error(xhr.status + ': ' + xhr.responseText);
 		}
 	};
 
 	var userObject = {
-		title : title,
-		description : description,
-		category : category,
-		startDate : startDate,
-		endDate : endDate,
-		location : location, 
-		street : street, 
-		city : city,
-		state : state, 
-		zip : zip
+		title : thisButtonsForm.title.value,
+		description : thisButtonsForm.description.value,
+		eventCategory : thisButtonsForm.eventCategory.value,
+		startDate : thisButtonsForm.startDate.value,
+		endDate : thisButtonsForm.endDate.value,
+		location : thisButtonsForm.location.value, 
+		street : thisButtonsForm.street.value, 
+		city : thisButtonsForm.city.value,
+		state : thisButtonsForm.state.value, 
+		zip : thisButtonsForm.zip.value
 	};
 	var userObjectJson = JSON.stringify(userObject); // Convert JS object to
 	// JSON string

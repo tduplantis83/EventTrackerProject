@@ -174,6 +174,7 @@ public class DouglasCountyCOEventsServiceImpl implements DouglasCountyCOEventsSe
 		 * endDate 
 		 * state
 		 */
+		System.out.println("*********************************EVENT: "+ event);
 
 		// if required fields are null/0
 		// cannot create new Post
