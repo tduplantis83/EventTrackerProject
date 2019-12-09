@@ -35,7 +35,7 @@ function init() {
 
 }
 
-function displaySearchResults(uri){
+ffunction displaySearchResults(uri){
 	let results = document.getElementById('searchResults');
 	let allButton = document.getElementById('allevents');
 	let searchButton = document.getElementById('search');
@@ -50,95 +50,230 @@ function displaySearchResults(uri){
 	if (xhr.readyState === 4 && xhr.status < 400) {
 		var data = JSON.parse(xhr.responseText);
 
-		// create table
-		var dataTable = document.createElement('table');
-		dataTable.style.border = "solid black";
 
-		// create header
-		var dataTableHead = document.createElement('thead');
-
-		// create body
-		var dataTableBody = document.createElement('tbody');
-
-		// create row for header
-		let headRow = document.createElement('tr');
 		
 		if(Array.isArray(data)){
-			// find the key names from data to use for the header data
-			for (let heading in data[0]) {
-				//create a header data element
-				let headData = document.createElement('th');
-
-				//fill it with the key names (& change first letter to toUpperCase)
-				headData.textContent = heading.charAt(0).toUpperCase() + heading.slice(1);
-
-				//add head data to the header row
-				headRow.appendChild(headData);
-
-				//add the header row to the table header
-				dataTableHead.appendChild(headRow);
-			}
-
+			// create row for header
 			// cycle through data array to fill table with data
+			// create a header data element
 			data.forEach(function(v, i , a) {
-				let row =  document.createElement('tr');
-				// find the key names from data to use for the  data
-				for (let key in v) {
-					// create a column of data for each key value in this object
-					let tabledata = document.createElement('td');
+				// create table
+				var dataTable = document.createElement('table');
+				
+				// create header
+				var dataTableHead = document.createElement('thead');
+				
+				// create body
+				var dataTableBody = document.createElement('tbody');
+				
+				// create foot
+				var dataTableFoot = document.createElement('tfoot');
+				// create row for header
+				let headRow = document.createElement('tr');
+				let tablerow =  document.createElement('tr');
+				let footrow =  document.createElement('tr');
+				let footdata = document.createElement('td');
+				
+				// add an update & delete button to table footer
+				var updateButton = document.createElement('button');
+				updateButton.class="btn btn-warning btn-md btn-block";
+				updateButton.textContent='Update';
+				
+				
+				var deleteButton = document.createElement('button');
+				deleteButton.class="btn btn-danger btn-md btn-block";
+				deleteButton.textContent='Delete';
+				
+					// find the key names from data to use for the header data
+					for (let key in v) {
+						// create a header data element
+						let headData = document.createElement('th');
 
-					// set the data columns = to the key values
-					tabledata.textContent = v[key];
+						// fill it with the key names (& change first letter to
+						// toUpperCase)
+						headData.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+
+
+						
+						// create a column of data for each key value in this
+						// object
+						let tabledata = document.createElement('td');
+						
+						// set the data columns = to the key values
+						tabledata.textContent = v[key];
+						
+						// add head data to the header row
+						headRow.appendChild(headData);
+						// add the header row to the table header
+						dataTableHead.appendChild(headRow);
+						// add those key values to the row
+						tablerow.appendChild(tabledata);
+						// add the row to the table body
+						dataTableBody.appendChild(tablerow);
+						
+						
+						updateButton.value = v.id;
+						deleteButton.value = v.id;
+						footdata.appendChild(updateButton);
+						footdata.appendChild(deleteButton);
+						footrow.appendChild(footdata);
+						dataTableFoot.appendChild(footrow);
+						
+						
+						// add the table header to the table
+						dataTable.appendChild(dataTableHead);
+						// add the table body to the table
+						dataTable.appendChild(dataTableBody);
+						// add teh footer to the table
+						dataTable.appendChild(dataTableFoot);
+						
+						// add the table to the document
+						results.appendChild(dataTable);
+						
+						updateButton.addEventListener('click', function(e) {
+							let upateForm = document.createElement('form');
+							e.preventDefault();
+							results.textContent = '';
+							let eventId = updateButton.value
+
+							updateEvent(eventId);
+						});
+						
+						deleteButton.addEventListener('click', function(e) {
+							var xhr = new XMLHttpRequest();
+							// request body
+							xhr.open("DELETE", 'api/events/'+deleteButton.value, true);
+							xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON
+							xhr.onreadystatechange = function() {
+								
+								console.log(xhr.readyState);
+								console.log(xhr.responseText);
+								
+								if (xhr.readyState === 4 && xhr.status < 400) {
+									var userObject = JSON.parse(xhr.responseText);
+								}
+								if (xhr.readyState === 4 && xhr.status >= 400) {
+									console.error(xhr.status + ': ' + xhr.responseText);
+								}
+							};
+
+							xhr.send(null);
+							
+						});
+					}
 			
-					// add those key values to the row
-					row.appendChild(tabledata);
-				}
-			
-				// add the row to the table body
-				dataTableBody.appendChild(row);
+				
 
 			});
+			
 		}	
 		else {
-			// find the key names from data to use for the header data
-			for (let heading in data) {
-				//create a header data element
-				let headData = document.createElement('th');
-
-				//fill it with the key names (& change first letter to toUpperCase)
-				headData.textContent = heading.charAt(0).toUpperCase() + heading.slice(1);
-
-				//add head data to the header row
-				headRow.appendChild(headData);
-
-				//add the header row to the table header
-				dataTableHead.appendChild(headRow);
-			}
+			// create table
+			var dataTable = document.createElement('table');
 			
-			let row =  document.createElement('tr');
-			// find the key names from data to use for the header data
-			for (let key in data) {
-				// create a column of data for each key value in this object
-				let tabledata = document.createElement('td');
+			// create header
+			var dataTableHead = document.createElement('thead');
+			
+			// create body
+			var dataTableBody = document.createElement('tbody');
+			
+			// create foot
+			var dataTableFoot = document.createElement('tfoot');
+			// create row for header
+			let headRow = document.createElement('tr');
+			let tablerow =  document.createElement('tr');
+			let footrow =  document.createElement('tr');
+			let footdata = document.createElement('td');
+			
+			// add an update & delete button to table footer
+			var updateButton = document.createElement('button');
+			updateButton.class="btn btn-warning btn-md btn-block";
+			updateButton.textContent='Update';
+			
 
-				// set the data columns = to the key values
-				tabledata.textContent = data[key];
-		
-				// add those key values to the row
-				row.appendChild(tabledata);
-			}
-		
-			// add the row to the table body
-			dataTableBody.appendChild(row);
+			var deleteButton = document.createElement('button');
+			deleteButton.class="btn btn-danger btn-md btn-block";
+			deleteButton.textContent='Delete';
+			
+				// find the key names from data to use for the header data
+				for (let key in data) {
+					// create a header data element
+					let headData = document.createElement('th');
+
+					// fill it with the key names (& change first letter to
+					// toUpperCase)
+					headData.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+
+
+					
+					// create a column of data for each key value in this object
+					let tabledata = document.createElement('td');
+					
+					// set the data columns = to the key values
+					tabledata.textContent = data[key];
+					
+					// add head data to the header row
+					headRow.appendChild(headData);
+					// add the header row to the table header
+					dataTableHead.appendChild(headRow);
+					// add those key values to the row
+					tablerow.appendChild(tabledata);
+					// add the row to the table body
+					dataTableBody.appendChild(tablerow);
+					
+					
+					updateButton.value = data.id;
+					deleteButton.value = data.id;
+					footdata.appendChild(updateButton);
+					footdata.appendChild(deleteButton);
+					footrow.appendChild(footdata);
+					dataTableFoot.appendChild(footrow);
+
+					
+					// add the table header to the table
+					dataTable.appendChild(dataTableHead);
+					// add the table body to the table
+					dataTable.appendChild(dataTableBody);
+					// add teh footer to the table
+					dataTable.appendChild(dataTableFoot);
+					
+					// add the table to the document
+					results.appendChild(dataTable);
+					
+					updateButton.addEventListener('click', function(e) {
+						let upateForm = document.createElement('form');
+						e.preventDefault();
+						results.textContent = '';
+						let eventId = updateButton.value
+
+						updateEvent(eventId);
+					});
+					
+					deleteButton.addEventListener('click', function(e) {
+						var xhr = new XMLHttpRequest();
+						// request body
+						xhr.open("DELETE", 'api/events/'+deleteButton.value, true);
+						xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON
+						xhr.onreadystatechange = function() {
+							
+							console.log(xhr.readyState);
+							console.log(xhr.responseText);
+							
+							if (xhr.readyState === 4 && xhr.status < 400) {
+								var userObject = JSON.parse(xhr.responseText);
+							}
+							if (xhr.readyState === 4 && xhr.status >= 400) {
+								console.error(xhr.status + ': ' + xhr.responseText);
+							}
+						};
+
+						xhr.send(null);
+						
+					});
+				}
 		}
-
-    // add the table header to the table
-    dataTable.appendChild(dataTableHead);
-    // add the table body to the table
-    dataTable.appendChild(dataTableBody);
-
-    // add the table to the document
-    results.appendChild(dataTable);
+		
+	
     
     results.scrollIntoView({behavior: 'smooth'});
 
@@ -149,6 +284,23 @@ function displaySearchResults(uri){
 	}
 };
 
+
+
 xhr.send(null);
 
 };
+
+
+function updateEvent (id) {
+	let results = document.getElementById('searchResults');
+	let upateForm = document.createElement('form');
+	updateForm.name = "updateForm";
+	let input = document.createElement('input');
+	input.type="text";
+	input.name="title";
+	input.value="title";
+	
+	upateForm.appendChild(input);
+	results.appendChild(updateForm);
+	
+}
