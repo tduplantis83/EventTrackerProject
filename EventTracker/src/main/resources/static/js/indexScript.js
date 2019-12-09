@@ -35,7 +35,7 @@ function init() {
 
 }
 
-ffunction displaySearchResults(uri){
+function displaySearchResults(uri){
 	let results = document.getElementById('searchResults');
 	let allButton = document.getElementById('allevents');
 	let searchButton = document.getElementById('search');
@@ -112,8 +112,8 @@ ffunction displaySearchResults(uri){
 						dataTableBody.appendChild(tablerow);
 						
 						
-						updateButton.value = v.id;
-						deleteButton.value = v.id;
+						updateButton.value = v;
+						deleteButton.value = v;
 						footdata.appendChild(updateButton);
 						footdata.appendChild(deleteButton);
 						footrow.appendChild(footdata);
@@ -134,12 +134,14 @@ ffunction displaySearchResults(uri){
 							let upateForm = document.createElement('form');
 							e.preventDefault();
 							results.textContent = '';
-							let eventId = updateButton.value
+							let event = updateButton.value
 
-							updateEvent(eventId);
+							updateEvent(event);
 						});
 						
 						deleteButton.addEventListener('click', function(e) {
+							
+							console.log(deleteButton.value);
 							var xhr = new XMLHttpRequest();
 							// request body
 							xhr.open("DELETE", 'api/events/'+deleteButton.value, true);
@@ -252,12 +254,9 @@ ffunction displaySearchResults(uri){
 					deleteButton.addEventListener('click', function(e) {
 						var xhr = new XMLHttpRequest();
 						// request body
-						xhr.open("DELETE", 'api/events/'+deleteButton.value, true);
+						xhr.open("DELETE", 'api/events/'+deleteButton.value.id, true);
 						xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON
 						xhr.onreadystatechange = function() {
-							
-							console.log(xhr.readyState);
-							console.log(xhr.responseText);
 							
 							if (xhr.readyState === 4 && xhr.status < 400) {
 								var userObject = JSON.parse(xhr.responseText);
@@ -290,17 +289,17 @@ xhr.send(null);
 
 };
 
-
-function updateEvent (id) {
+function updateEvent (event) {
 	let results = document.getElementById('searchResults');
-	let upateForm = document.createElement('form');
+	
+	console.log(event.id);
+	let updateForm = document.createElement('form');
 	updateForm.name = "updateForm";
 	let input = document.createElement('input');
 	input.type="text";
 	input.name="title";
-	input.value="title";
+	input.value= event.title.value;
 	
-	upateForm.appendChild(input);
+	updateForm.appendChild(input);
 	results.appendChild(updateForm);
-	
 }

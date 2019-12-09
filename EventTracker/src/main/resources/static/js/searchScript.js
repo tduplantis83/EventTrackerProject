@@ -276,9 +276,9 @@ function displaySearchResults(uri){
 							let upateForm = document.createElement('form');
 							e.preventDefault();
 							results.textContent = '';
-							let eventId = updateButton.value
+							let event = updateButton
 
-							updateEvent(eventId);
+							updateEvent(event);
 						});
 						
 						deleteButton.addEventListener('click', function(e) {
@@ -364,8 +364,8 @@ function displaySearchResults(uri){
 					dataTableBody.appendChild(tablerow);
 					
 					
-					updateButton.value = data.id;
-					deleteButton.value = data.id;
+					updateButton.value = data;
+					deleteButton.value = data;
 					footdata.appendChild(updateButton);
 					footdata.appendChild(deleteButton);
 					footrow.appendChild(footdata);
@@ -386,15 +386,15 @@ function displaySearchResults(uri){
 						let upateForm = document.createElement('form');
 						e.preventDefault();
 						results.textContent = '';
-						let eventId = updateButton.value
+						let event = updateButton.value
 
-						updateEvent(eventId);
+						updateEvent(event);
 					});
 					
 					deleteButton.addEventListener('click', function(e) {
 						var xhr = new XMLHttpRequest();
 						// request body
-						xhr.open("DELETE", 'api/events/'+deleteButton.value, true);
+						xhr.open("DELETE", 'api/events/'+deleteButton.value.id, true);
 						xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON
 						xhr.onreadystatechange = function() {
 							
@@ -427,46 +427,21 @@ function displaySearchResults(uri){
 };
 
 
-
 xhr.send(null);
 
 };
 
 
-function updateEvent (id) {
+function updateEvent (event) {
 	let results = document.getElementById('searchResults');
-	let updateObj = function(getbyId) {
-		var xhr = new XMLHttpRequest();
-
-		xhr.open('GET', uri, true);
-
-		xhr.onreadystatechange = function() {
-
-		if (xhr.readyState === 4 && xhr.status < 400) {
-			var data = JSON.parse(xhr.responseText);
-			return 	JSON.stringify(data); // Convert JS object to
-;
-			
-		}
-
-		if (xhr.readyState === 4 && xhr.status >= 400) {
-			console.error(xhr.status + ': ' + xhr.responseText);
-		}
-	};
-
-
-
-	xhr.send(null);
-
-	};
-
-	console.log(updateObj.stringify);
+	
+	console.log(event.id);
 	let updateForm = document.createElement('form');
 	updateForm.name = "updateForm";
 	let input = document.createElement('input');
 	input.type="text";
 	input.name="title";
-	input.value= 
+	input.value= event.title;
 	
 	updateForm.appendChild(input);
 	results.appendChild(updateForm);
