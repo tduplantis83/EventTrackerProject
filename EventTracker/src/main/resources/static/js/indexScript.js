@@ -113,7 +113,7 @@ function displaySearchResults(uri){
 						
 						
 						updateButton.value = v;
-						deleteButton.value = v;
+						deleteButton.value = v.id;
 						footdata.appendChild(updateButton);
 						footdata.appendChild(deleteButton);
 						footrow.appendChild(footdata);
@@ -298,7 +298,7 @@ function updateEvent (event) {
 	let input = document.createElement('input');
 	input.type="text";
 	input.name="title";
-	input.value= event.title.value;
+	input.value= event.title;
 	
 	updateForm.appendChild(input);
 	results.appendChild(updateForm);
