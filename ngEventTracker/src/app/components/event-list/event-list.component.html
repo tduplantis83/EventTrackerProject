@@ -1,0 +1,111 @@
+ <h1>
+  {{ title }}: <span class="badge badge-info">{{ numberOfEvents() }}</span>
+</h1>
+
+<div *ngIf="!selected">
+  <table class="table table-striped table-hover">
+    <thead class="thead thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Location</th>
+        <th>Street Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip Code</th>
+        <th colspan="2">Modify this Event</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of events">
+        <td (click)="displayEvent(event)">{{ event.id }}</td>
+        <td (click)="displayEvent(event)">{{ event.title }}</td>
+        <td (click)="displayEvent(event)">{{ event.description }}</td>
+        <td (click)="displayEvent(event)">{{ event.eventCategory }}</td>
+        <td (click)="displayEvent(event)">{{ event.startDate | date:'short' }}</td>
+        <td (click)="displayEvent(event)">{{ event.endDate | date:'short'}}</td>
+        <td (click)="displayEvent(event)">{{ event.location }}</td>
+        <td (click)="displayEvent(event)">{{ event.street }}</td>
+        <td (click)="displayEvent(event)">{{ event.city }}</td>
+        <td (click)="displayEvent(event)">{{ event.state }}</td>
+        <td (click)="displayEvent(event)">{{ event.zip }}</td>
+        <td>
+          <button class="btn btn-warning" (click)="displayEvent(event)">
+            Update
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteEvent(event.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">
+          <button
+            class="btn btn-success"
+            value="createEvent"
+            (click)="createEvent(newEvent)"
+          >
+            Create New Event
+          </button>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<br />
+
+<div *ngIf="selected && !updateEvent">
+  <ul>
+    <li>ID: {{ selected.id }}</li>
+    <li>Task: {{ selected.title }}</li>
+    <li>Desc: {{ selected.description }}</li>
+    <li>Category: {{ selected.eventCategory }}</li>
+    <li>Start Date: {{ selected.startDate | date:'short'  }}</li>
+    <li>End Date: {{ selected.endDate  | date:'short' }}</li>
+    <li>Location: {{ selected.location }}</li>
+    <li>Street: {{ selected.street }}</li>
+    <li>City: {{ selected.city }}</li>
+    <li>State: {{ selected.state }}</li>
+    <li>Zip: {{ selected.zip }}</li>
+  </ul>
+  <button class="btn btn-secondary" (click)="displayTable()">Back</button>
+  <button class="btn btn-warning" (click)="setUpdateEvent()">Update</button>
+</div>
+
+<div *ngIf="updateEvent">
+  <form class="form form-control" name="editEvent">
+    <input type="hidden" name="id" [(ngModel)]="updateEvent.id" />
+    <br />
+    <input type="text" name="title" [(ngModel)]="updateEvent.title" />
+    <br />
+    <input type="text" name="description" [(ngModel)]="updateEvent.description" />
+    <br />
+    <input type="text" name="eventCategory" [(ngModel)]="updateEvent.eventCategory" />
+    <br />
+    <input type="datetime-local" name="startDate" value="updateEvent.startDate" [(ngModel)]="updateEvent.startDate" />
+    <br />
+    <input type="datetime-local" name="endDate" value="updateEvent.endDate" [(ngModel)]="updateEvent.endDate" />
+    <br />
+    <input type="text" name="location" [(ngModel)]="updateEvent.location" />
+    <br />
+    <input type="text" name="street" [(ngModel)]="updateEvent.street" />
+    <br />
+    <input type="text" name="city" [(ngModel)]="updateEvent.city" />
+    <br />
+    <input type="text" name="state" [(ngModel)]="updateEvent.state" />
+    <br />
+    <input type="text" name="zip" [(ngModel)]="updateEvent.zip" />
+
+    <br />
+    <button class="btn btn-secondary" (click)="updateEvent = null">Cancel</button>
+    <button class="btn btn-warning" (click)="updateAnEvent(updateEvent)">Save Updates</button>
+  </form>
+</div>
