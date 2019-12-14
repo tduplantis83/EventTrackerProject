@@ -19,6 +19,8 @@ export class EventListComponent implements OnInit {
   selected = null;
   updateEvent: Event = null;
   keyword: string = null;
+  searchBy: string = null;
+  search = null;
 
 
   // C O N S T R U C T O R
@@ -27,11 +29,12 @@ export class EventListComponent implements OnInit {
     private currentRoute: ActivatedRoute,
     private router: Router
   ) {
+    //reloads current URL with new search term
       this.navigationSubscription = this.router.events.subscribe(
         (e: any ) => {
           if (e instanceof NavigationEnd) {
             this.keyword = this.currentRoute.snapshot.paramMap.get('keyword');
-            if(this.keyword){
+            if(this.keyword) {
               this.reload();
             }
             else {
@@ -57,7 +60,7 @@ export class EventListComponent implements OnInit {
                 this.selected = one;
               },
             err => {
-              return console.error('Delete error in Component');
+              return console.error('Search error in Component');
             });
         }
         else if (!this.selected && this.currentRoute.snapshot.paramMap.get('keyword')) {
@@ -66,7 +69,72 @@ export class EventListComponent implements OnInit {
               this.events = keywordsearch;
             },
           err => {
-            return console.error('Delete error in Component');
+            return console.error('Search error in Component');
+          });
+        }
+        else if (!this.selected && this.currentRoute.snapshot.paramMap.get('title')) {
+          return this.eventsvc.findByTitle(this.currentRoute.snapshot.paramMap.get('title')).subscribe(
+            titlesearch => {
+              this.events = titlesearch;
+            },
+          err => {
+            return console.error('Search error in Component');
+          });
+        }
+        else if (!this.selected && this.currentRoute.snapshot.paramMap.get('desc')) {
+          return this.eventsvc.findByDesc(this.currentRoute.snapshot.paramMap.get('desc')).subscribe(
+            descsearch => {
+              this.events = descsearch;
+            },
+          err => {
+            return console.error('Search error in Component');
+          });
+        }
+        else if (!this.selected && this.currentRoute.snapshot.paramMap.get('cat')) {
+          return this.eventsvc.findByCat(this.currentRoute.snapshot.paramMap.get('cat')).subscribe(
+            catsearch => {
+              this.events = catsearch;
+            },
+          err => {
+            return console.error('Search error in Component');
+          });
+        }
+        else if (!this.selected && this.currentRoute.snapshot.paramMap.get('start') && this.currentRoute.snapshot.paramMap.get('end')) {
+          // tslint:disable-next-line: max-line-length
+          return this.eventsvc.findByDateRange(this.currentRoute.snapshot.paramMap.get('start'), this.currentRoute.snapshot.paramMap.get('end')).subscribe(
+            dateRangeS => {
+              this.events = dateRangeS;
+            },
+          err => {
+            return console.error('Search error in Component');
+          });
+        }
+        else if (!this.selected && this.currentRoute.snapshot.paramMap.get('year') && this.currentRoute.snapshot.paramMap.get('month')) {
+          // tslint:disable-next-line: max-line-length
+          return this.eventsvc.findByYearMonth(this.currentRoute.snapshot.paramMap.get('year'), this.currentRoute.snapshot.paramMap.get('month')).subscribe(
+            yearMonth => {
+              this.events = yearMonth;
+            },
+          err => {
+            return console.error('Search error in Component');
+          });
+        }
+        else if (!this.selected && this.currentRoute.snapshot.paramMap.get('year')) {
+          return this.eventsvc.findByYear(this.currentRoute.snapshot.paramMap.get('year')).subscribe(
+            years => {
+              this.events = years;
+            },
+          err => {
+            return console.error('Search error in Component');
+          });
+        }
+        else if (!this.selected && this.currentRoute.snapshot.paramMap.get('location')) {
+          return this.eventsvc.findByLocation(this.currentRoute.snapshot.paramMap.get('location')).subscribe(
+            years => {
+              this.events = years;
+            },
+          err => {
+            return console.error('Search error in Component');
           });
         }
       },
@@ -82,6 +150,9 @@ export class EventListComponent implements OnInit {
   }
 
   numberOfEvents() {
+    if(this.selected){
+      return "1";
+    }
     return this.events.length;
   }
 

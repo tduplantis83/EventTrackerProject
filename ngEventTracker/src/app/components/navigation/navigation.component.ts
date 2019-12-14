@@ -13,6 +13,7 @@ import { VirtualTimeScheduler } from 'rxjs';
 export class NavigationComponent implements OnInit {
   constructor(private currentRoute: ActivatedRoute, private router: Router) {}
   keyword: string = null;
+  search = null;
 
   ngOnInit() {
 
@@ -20,5 +21,6 @@ export class NavigationComponent implements OnInit {
 
   searchKeyword() {
     this.router.navigateByUrl("events/search" + '/' + this.keyword);
+    this.keyword = null;
   }
 }

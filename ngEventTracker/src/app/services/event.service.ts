@@ -51,6 +51,118 @@ export class EventService {
     );
   }
 
+  findByTitle(title: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // Authorization: "Basic " + this.authsvc.getCredentials()
+      })
+    };
+    // returns a copy of the array of todos
+    return this.http.get<Event[]>(this.baseUrl + '/search/title/' + title, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Service Error: Index Method');
+      })
+    );
+  }
+
+  findByDesc(desc: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // Authorization: "Basic " + this.authsvc.getCredentials()
+      })
+    };
+    // returns a copy of the array of todos
+    return this.http.get<Event[]>(this.baseUrl + '/search/description/' + desc, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Service Error: Index Method');
+      })
+    );
+  }
+
+  findByCat(cat: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // Authorization: "Basic " + this.authsvc.getCredentials()
+      })
+    };
+    // returns a copy of the array of todos
+    return this.http.get<Event[]>(this.baseUrl + '/search/category/' + cat, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Service Error: Index Method');
+      })
+    );
+  }
+
+  findByYear(year: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // Authorization: "Basic " + this.authsvc.getCredentials()
+      })
+    };
+    // returns a copy of the array of todos
+    return this.http.get<Event[]>(this.baseUrl + '/search/year/' + year, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Service Error: Index Method');
+      })
+    );
+  }
+
+  findByLocation(location: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // Authorization: "Basic " + this.authsvc.getCredentials()
+      })
+    };
+    // returns a copy of the array of todos
+    return this.http.get<Event[]>(this.baseUrl + '/search/location/' + location, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Service Error: Index Method');
+      })
+    );
+  }
+
+  findByDateRange(start: string, end: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // Authorization: "Basic " + this.authsvc.getCredentials()
+      })
+    };
+    // returns a copy of the array of todos
+    return this.http.get<Event[]>(this.baseUrl + '/search/dateRange/' + start + '/' + end, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Service Error: Index Method');
+      })
+    );
+  }
+
+  findByYearMonth(year: string, month: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // Authorization: "Basic " + this.authsvc.getCredentials()
+      })
+    };
+    // returns a copy of the array of todos
+    return this.http.get<Event[]>(this.baseUrl + '/search/year/month/' + year + '/' + month, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Service Error: Index Method');
+      })
+    );
+  }
+
   findOne(id: string) {
     const httpOptions = {
       headers: new HttpHeaders({

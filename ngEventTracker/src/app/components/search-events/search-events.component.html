@@ -1,1 +1,80 @@
-<p>search-events works!</p>
+<form name=id>
+  <div class="form-group">
+    <label name="id" for="id">Event Id</label>
+    <input name="id" type="id" class="form-control" id="id" placeholder="Event Id" [(ngModel)]="id">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="searchByID(id)">Search by Id</button>
+</form>
+
+<br>
+
+<form name=title>
+  <div class="form-group">
+    <label name="title" for="title">Event Title</label>
+    <input name="title" type="title" class="form-control" id="title" placeholder="Event Title" [(ngModel)]="title">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="searchByTitle(title)">Search by Title</button>
+</form>
+
+<br>
+
+<form name=desc>
+  <div class="form-group">
+    <label name="desc" for="desc">Event Description</label>
+    <input name="desc" type="desc" class="form-control" id="desc" placeholder="Event Description" [(ngModel)]="desc">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="searchByDesc(desc)">Search by Description</button>
+</form>
+
+<br>
+
+<form name=cat>
+  <div class="form-group">
+    <label name="cat" for="cat">Event Description</label>
+    <input name="cat" type="cat" class="form-control" id="cat" placeholder="Event Category" [(ngModel)]="cat">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="searchByCat(cat)">Search by Event Category</button>
+</form>
+
+<br>
+
+<form name=dateRange>
+  <div class="form-group">
+    <label name="dateRange" for="dateRange">Event Date Range</label>
+    <input name="dateRange" type="datetime-local" class="form-control" id="cat" placeholder="Event Date Range START" [(ngModel)]="dateRangeStart">
+    <input name="dateRange" type="datetime-local" class="form-control" id="cat" placeholder="Event Date Range END" [(ngModel)]="dateRangeEnd">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="searchByDateRange(dateRangeStart, dateRangeEnd)">Search by Event Date Range</button>
+</form>
+
+<br>
+
+<form name=year>
+  <div class="form-group">
+    <label name="year" for="year">Event Year</label>
+    <input name="year" type="text" class="form-control" id="year" placeholder="Event Year" [(ngModel)]="year">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="searchByYear(year)">Search by Event Year</button>
+</form>
+
+<br>
+
+<form name=monthYear>
+  <div class="form-group">
+    <label name="month" for="month">Event Month</label>
+    <input name="month" type="text" class="form-control" id="month" placeholder="Event Month" [(ngModel)]="month">
+    <label name="year" for="year">Event Year</label>
+    <input name="year" type="text" class="form-control" id="year" placeholder="Event Year" [(ngModel)]="year">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="searchByMonthYear(year,month)">Search by Event Month & Year</button>
+</form>
+
+<br>
+
+<form name=location>
+  <div class="form-group">
+    <label name="location" for="location">Event Location</label>
+    <input name="location" type="text" class="form-control" id="location" placeholder="Event Location" [(ngModel)]="location">
+  </div>
+  <button type="submit" class="btn btn-primary" (click)="searchByLocation(location)">Search by Event Month & Year</button>
+</form>
