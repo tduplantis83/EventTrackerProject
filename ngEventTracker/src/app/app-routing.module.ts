@@ -10,13 +10,13 @@ const routes: Routes = [
   { path: 'home', component: EventListComponent },
   { path: 'events', component: EventListComponent },
   { path: 'events/:id', component: EventListComponent },
-  { path: 'search', component: SearchEventsComponent },
+  { path: 'events/search/:keyword', component: EventListComponent },
   { path: 'create', component: CreateEventsComponent },
   { path: '**', component: NotFoundComponent } // sends back home if page/route not found
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash: true, onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

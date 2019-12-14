@@ -35,7 +35,23 @@ export class EventService {
     );
   }
 
-  findOne(id) {
+  findByKeyword(keyword: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // Authorization: "Basic " + this.authsvc.getCredentials()
+      })
+    };
+    // returns a copy of the array of todos
+    return this.http.get<Event[]>(this.baseUrl + '/search/' + keyword, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Service Error: Index Method');
+      })
+    );
+  }
+
+  findOne(id: string) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -43,7 +59,7 @@ export class EventService {
       })
     };
 
-    return this.http.get<Event[]>(this.baseUrl + '/' + id, httpOptions).pipe(
+    return this.http.get<Event>(this.baseUrl + '/' + id, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');

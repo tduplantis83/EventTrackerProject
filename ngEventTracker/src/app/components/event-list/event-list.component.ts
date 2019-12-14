@@ -2,7 +2,7 @@ import { NotFoundComponent } from './../not-found/not-found.component';
 import { EventService } from 'src/app/services/event.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Event } from 'src/app/models/event';
 
 @Component({
@@ -12,19 +12,35 @@ import { Event } from 'src/app/models/event';
 })
 export class EventListComponent implements OnInit {
   // F I E L D S
+  navigationSubscription;
   title = 'Douglas County, CO Events';
   events: Event[] = [];
   newEvent: Event = new Event();
   selected = null;
   updateEvent: Event = null;
-  urlId = null;
+  keyword: string = null;
+
 
   // C O N S T R U C T O R
   constructor(
     private eventsvc: EventService,
     private currentRoute: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+      this.navigationSubscription = this.router.events.subscribe(
+        (e: any ) => {
+          if (e instanceof NavigationEnd) {
+            this.keyword = this.currentRoute.snapshot.paramMap.get('keyword');
+            if(this.keyword){
+              this.reload();
+            }
+            else {
+
+            }
+          }
+        }
+      );
+  }
 
   // F U N C T I O N S
   ngOnInit() {
@@ -36,18 +52,21 @@ export class EventListComponent implements OnInit {
       data => {
         this.events = data;
         if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
-          this.urlId = +this.currentRoute.snapshot.paramMap.get('id');
-          this.events.forEach(e => {
-            if (e.id === this.urlId) {
-              this.selected = e;
-            }
-            if (this.selected === null) {
-              this.router.navigateByUrl(
-                'events' +
-                  this.currentRoute.snapshot.paramMap.get('id') +
-                  NotFoundComponent
-              );
-            }
+            return this.eventsvc.findOne(this.currentRoute.snapshot.paramMap.get('id')).subscribe(
+              one => {
+                this.selected = one;
+              },
+            err => {
+              return console.error('Delete error in Component');
+            });
+        }
+        else if (!this.selected && this.currentRoute.snapshot.paramMap.get('keyword')) {
+          return this.eventsvc.findByKeyword(this.currentRoute.snapshot.paramMap.get('keyword')).subscribe(
+            keywordsearch => {
+              this.events = keywordsearch;
+            },
+          err => {
+            return console.error('Delete error in Component');
           });
         }
       },
