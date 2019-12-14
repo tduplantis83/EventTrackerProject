@@ -6,7 +6,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SearchEventsComponent } from './components/search-events/search-events.component';
 
 const routes: Routes = [
-  // { path: 'home', component: EventListComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'events'},
+  { path: 'home', component: EventListComponent },
   { path: 'events', component: EventListComponent },
   { path: 'events/:id', component: EventListComponent },
   { path: 'search', component: SearchEventsComponent },

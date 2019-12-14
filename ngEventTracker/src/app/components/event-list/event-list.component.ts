@@ -1,23 +1,23 @@
-import { NotFoundComponent } from "./../not-found/not-found.component";
-import { EventService } from "src/app/services/event.service";
-import { Component, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Event } from "src/app/models/event";
+import { NotFoundComponent } from './../not-found/not-found.component';
+import { EventService } from 'src/app/services/event.service';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Event } from 'src/app/models/event';
 
 @Component({
-  selector: "app-event-list",
-  templateUrl: "./event-list.component.html",
-  styleUrls: ["./event-list.component.css"]
+  selector: 'app-event-list',
+  templateUrl: './event-list.component.html',
+  styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
   // F I E L D S
-  title: string = "Douglas County, CO Events";
+  title = 'Douglas County, CO Events';
   events: Event[] = [];
   newEvent: Event = new Event();
   selected = null;
   updateEvent: Event = null;
-  urlId: number = null;
+  urlId = null;
 
   // C O N S T R U C T O R
   constructor(
@@ -35,23 +35,23 @@ export class EventListComponent implements OnInit {
     this.eventsvc.index().subscribe(
       data => {
         this.events = data;
-        if (!this.selected && this.currentRoute.snapshot.paramMap.get("id")) {
-          this.urlId = +this.currentRoute.snapshot.paramMap.get("id");
+        if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
+          this.urlId = +this.currentRoute.snapshot.paramMap.get('id');
           this.events.forEach(e => {
             if (e.id === this.urlId) {
               this.selected = e;
             }
             if (this.selected === null) {
               this.router.navigateByUrl(
-                "events" +
-                  this.currentRoute.snapshot.paramMap.get("id") +
+                'events' +
+                  this.currentRoute.snapshot.paramMap.get('id') +
                   NotFoundComponent
               );
             }
           });
         }
       },
-      err => console.error("Reload error in Component")
+      err => console.error('Reload error in Component')
     );
     this.updateEvent = null;
     this.selected = null;
@@ -75,12 +75,12 @@ export class EventListComponent implements OnInit {
       data => {
         this.reload();
       },
-      err => console.error("Create error in Component: " + err)
+      err => console.error('Create error in Component: ' + err)
     );
   }
 
   setUpdateEvent() {
-      this.updateEvent = Object.assign({}, this.selected);
+    this.updateEvent = Object.assign({}, this.selected);
   }
 
   updateAnEvent(event: Event) {
@@ -88,7 +88,7 @@ export class EventListComponent implements OnInit {
       data => {
         this.reload();
       },
-      err => console.error("Update error in Component")
+      err => console.error('Update error in Component')
     );
   }
 
@@ -98,7 +98,7 @@ export class EventListComponent implements OnInit {
         this.reload();
       },
       err => {
-        return console.error("Delete error in Component");
+        return console.error('Delete error in Component');
       }
     );
   }

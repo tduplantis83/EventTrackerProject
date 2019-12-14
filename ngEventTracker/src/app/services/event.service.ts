@@ -1,16 +1,16 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { catchError, tap } from "rxjs/operators";
-import { Observable, throwError } from "rxjs";
-import { Router } from "@angular/router";
-import { Event } from "src/app/models/event";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { Event } from 'src/app/models/event';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class EventService {
   // F I E L D S
-  private baseUrl = "http://localhost:8100/api/events";
+  private baseUrl = 'http://localhost:8100/api/events';
 
   // C O N S T R U C T O R
   constructor(
@@ -22,7 +22,7 @@ export class EventService {
   index() {
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
         // Authorization: "Basic " + this.authsvc.getCredentials()
       })
     };
@@ -30,7 +30,7 @@ export class EventService {
     return this.http.get<Event[]>(this.baseUrl, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError("Service Error: Index Method");
+        return throwError('Service Error: Index Method');
       })
     );
   }
@@ -38,15 +38,15 @@ export class EventService {
   findOne(id) {
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
         // Authorization: "Basic " + this.authsvc.getCredentials()
       })
     };
 
-    return this.http.get<Event[]>(this.baseUrl + "/" + id, httpOptions).pipe(
+    return this.http.get<Event[]>(this.baseUrl + '/' + id, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError("Service Error: Index Method");
+        return throwError('Service Error: Index Method');
       })
     );
   }
@@ -54,7 +54,7 @@ export class EventService {
   create(newEvent: Event) {
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
         // Authorization: "Basic " + this.authsvc.getCredentials()
       })
     };
@@ -62,7 +62,7 @@ export class EventService {
     return this.http.post<Event>(this.baseUrl, newEvent, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError("Service Error: Create Method");
+        return throwError('Service Error: Create Method');
       })
     );
   }
@@ -70,17 +70,17 @@ export class EventService {
   update(id: number, newEvent: Event) {
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
         // Authorization: "Basic " + this.authsvc.getCredentials()
       })
     };
 
     return this.http
-      .put<Event>(this.baseUrl + "/" + id, newEvent, httpOptions)
+      .put<Event>(this.baseUrl + '/' + id, newEvent, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError("Service Error: Create Method");
+          return throwError('Service Error: Create Method');
         })
       );
   }
@@ -88,15 +88,15 @@ export class EventService {
   destroy(id: number) {
     const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
         // Authorization: "Basic " + this.authsvc.getCredentials()
       })
     };
 
-    return this.http.delete<any>(this.baseUrl + "/" + id, httpOptions).pipe(
+    return this.http.delete<any>(this.baseUrl + '/' + id, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError("Service Error: Create Method");
+        return throwError('Service Error: Create Method');
       })
     );
   }
