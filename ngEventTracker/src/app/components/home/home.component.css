@@ -1,0 +1,16 @@
+.container-fluid{
+  background-image:  url('https://www.douglas.co.us/wp-content/uploads/2015/01/1.21-Economic-CR-Houses-2.jpg');
+  background-repeat: no-repeat;
+	background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+
+h2 {
+  font-style: italic;
+}
+
+h1 {
+  font-weight: bold;
+  font-family: fantasy;
+}

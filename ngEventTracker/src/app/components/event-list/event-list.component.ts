@@ -218,6 +218,12 @@ export class EventListComponent implements OnInit {
     );
   }
 
+  confirmUpdateMethod(event: Event) {
+    if(confirm("Are you sure to UPDATE the " + event.title + " event?")) {
+        this.updateAnEvent(event);
+    }
+  }
+
   deleteEvent(id: number) {
     this.eventsvc.destroy(id).subscribe(
       data => {
@@ -227,5 +233,11 @@ export class EventListComponent implements OnInit {
         return console.error('Delete error in Component');
       }
     );
+  }
+
+  confirmDeleteMethod(event: Event) {
+    if(confirm("Are you sure to DELETE the " + event.title + " event?")) {
+        this.deleteEvent(event.id);
+    }
   }
 }

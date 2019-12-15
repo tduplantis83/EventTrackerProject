@@ -1,361 +1,365 @@
-
-<div class="container">
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form name="id">
-        <div class="form-group">
-          <label name="id" for="id">Event Id</label>
-          <input
-            name="id"
-            type="id"
-            class="form-control"
-            id="id"
-            placeholder="Event Id"
-            [(ngModel)]="id"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block btn-block" (click)="searchByID(id)">
-          Search by Id
-        </button>
-      </form>
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form name="id">
+          <div class="form-group">
+            <label name="id" for="id">Event Id</label>
+            <input
+              name="id"
+              type="id"
+              class="form-control"
+              id="id"
+              placeholder="Event Id"
+              [(ngModel)]="id"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block btn-block"
+            (click)="searchByID(id)"
+          >
+            Search by Id
+          </button>
+        </form>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
-  </div>
 
-  <br>
-
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form name="title">
-        <div class="form-group">
-          <label name="title" for="title">Event Title</label>
-          <input
-            name="title"
-            type="title"
-            class="form-control"
-            id="title"
-            placeholder="Event Title"
-            [(ngModel)]="title"
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary btn-block btn-block"
-          (click)="searchByTitle(title)"
-        >
-          Search by Title
-        </button>
-      </form>
+    <br />
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form name="title">
+          <div class="form-group">
+            <label name="title" for="title">Event Title</label>
+            <input
+              name="title"
+              type="title"
+              class="form-control"
+              id="title"
+              placeholder="Event Title"
+              [(ngModel)]="title"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block btn-block"
+            (click)="searchByTitle(title)"
+          >
+            Search by Title
+          </button>
+        </form>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
-  </div>
 
-  <br>
+    <br />
 
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form name="desc">
-        <div class="form-group">
-          <label name="desc" for="desc">Event Description</label>
-          <input
-            name="desc"
-            type="desc"
-            class="form-control"
-            id="desc"
-            placeholder="Event Description"
-            [(ngModel)]="desc"
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary btn-block btn-block"
-          (click)="searchByDesc(desc)"
-        >
-          Search by Description
-        </button>
-      </form>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form name="desc">
+          <div class="form-group">
+            <label name="desc" for="desc">Event Description</label>
+            <input
+              name="desc"
+              type="desc"
+              class="form-control"
+              id="desc"
+              placeholder="Event Description"
+              [(ngModel)]="desc"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block btn-block"
+            (click)="searchByDesc(desc)"
+          >
+            Search by Description
+          </button>
+        </form>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
-  </div>
 
-  <br>
+    <br />
 
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form name="cat">
-        <div class="form-group">
-          <label name="cat" for="cat">Event Description</label>
-          <input
-            name="cat"
-            type="cat"
-            class="form-control"
-            id="cat"
-            placeholder="Event Category"
-            [(ngModel)]="cat"
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary btn-block btn-block"
-          (click)="searchByCat(cat)"
-        >
-          Search by Event Category
-        </button>
-      </form>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form name="cat">
+          <div class="form-group">
+            <label name="cat" for="cat">Event Category</label>
+            <input
+              name="cat"
+              type="cat"
+              class="form-control"
+              id="cat"
+              placeholder="Event Category"
+              [(ngModel)]="cat"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block btn-block"
+            (click)="searchByCat(cat)"
+          >
+            Search by Event Category
+          </button>
+        </form>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
-  </div>
 
-  <br>
+    <br />
 
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form name="dateRange">
-        <div class="form-group">
-          <label name="dateRange" for="dateRange">Event Date Range</label>
-          <input
-            name="dateRange"
-            type="datetime-local"
-            class="form-control"
-            id="cat"
-            placeholder="Event Date Range START"
-            [(ngModel)]="dateRangeStart"
-          />
-          <input
-            name="dateRange"
-            type="datetime-local"
-            class="form-control"
-            id="cat"
-            placeholder="Event Date Range END"
-            [(ngModel)]="dateRangeEnd"
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary btn-block btn-block"
-          (click)="searchByDateRange(dateRangeStart, dateRangeEnd)"
-        >
-          Search by Event Date Range
-        </button>
-      </form>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form name="dateRange">
+          <div class="form-group">
+            <label name="dateRange" for="dateRange">Event Date Range</label>
+            <input
+              name="dateRange"
+              type="datetime-local"
+              class="form-control"
+              id="cat"
+              placeholder="Event Date Range START"
+              [(ngModel)]="dateRangeStart"
+            />
+            <input
+              name="dateRange"
+              type="datetime-local"
+              class="form-control"
+              id="cat"
+              placeholder="Event Date Range END"
+              [(ngModel)]="dateRangeEnd"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block btn-block"
+            (click)="searchByDateRange(dateRangeStart, dateRangeEnd)"
+          >
+            Search by Event Date Range
+          </button>
+        </form>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
-  </div>
 
-  <br>
+    <br />
 
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form name="year">
-        <div class="form-group">
-          <label name="year" for="year">Event Year</label>
-          <input
-            name="year"
-            type="text"
-            class="form-control"
-            id="year"
-            placeholder="Event Year"
-            [(ngModel)]="year"
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary btn-block btn-block"
-          (click)="searchByYear(year)"
-        >
-          Search by Event Year
-        </button>
-      </form>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form name="year">
+          <div class="form-group">
+            <label name="year" for="year">Event Year</label>
+            <input
+              name="year"
+              type="text"
+              class="form-control"
+              id="year"
+              placeholder="Event Year"
+              [(ngModel)]="year"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block btn-block"
+            (click)="searchByYear(year)"
+          >
+            Search by Event Year
+          </button>
+        </form>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
-  </div>
 
-  <br>
+    <br />
 
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form name="monthYear">
-        <div class="form-group">
-          <label name="month" for="month">Event Month</label>
-          <input
-            name="month"
-            type="text"
-            class="form-control"
-            id="month"
-            placeholder="Event Month"
-            [(ngModel)]="month"
-          />
-          <label name="year" for="year">Event Year</label>
-          <input
-            name="year"
-            type="text"
-            class="form-control"
-            id="year"
-            placeholder="Event Year"
-            [(ngModel)]="year"
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary btn-block btn-block"
-          (click)="searchByMonthYear(year, month)"
-        >
-          Search by Event Month & Year
-        </button>
-      </form>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form name="monthYear">
+          <div class="form-group">
+            <label name="month" for="month">Event Month</label>
+            <input
+              name="month"
+              type="text"
+              class="form-control"
+              id="month"
+              placeholder="Event Month"
+              [(ngModel)]="month"
+            />
+            <label name="year" for="year">Event Year</label>
+            <input
+              name="year"
+              type="text"
+              class="form-control"
+              id="year"
+              placeholder="Event Year"
+              [(ngModel)]="year"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block btn-block"
+            (click)="searchByMonthYear(year, month)"
+          >
+            Search by Event Month & Year
+          </button>
+        </form>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
-  </div>
 
-  <br>
+    <br />
 
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form name="location">
-        <div class="form-group">
-          <label name="location" for="location">Event Location</label>
-          <input
-            name="location"
-            type="text"
-            class="form-control"
-            id="location"
-            placeholder="Event Location"
-            [(ngModel)]="location"
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary btn-block btn-block"
-          (click)="searchByLocation(location)"
-        >
-          Search by Event Month & Year
-        </button>
-      </form>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form name="location">
+          <div class="form-group">
+            <label name="location" for="location">Event Location</label>
+            <input
+              name="location"
+              type="text"
+              class="form-control"
+              id="location"
+              placeholder="Event Location"
+              [(ngModel)]="location"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block btn-block"
+            (click)="searchByLocation(location)"
+          >
+            Search by Event Month & Year
+          </button>
+        </form>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
-  </div>
 
-  <br>
+    <br />
 
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form name="street">
-        <div class="form-group">
-          <label name="street" for="street">Event Street</label>
-          <input
-            name="street"
-            type="text"
-            class="form-control"
-            id="street"
-            placeholder="Event Street"
-            [(ngModel)]="street"
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary btn-block"
-          (click)="searchByStreet(street)"
-        >
-          Search by Event Street Address
-        </button>
-      </form>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form name="street">
+          <div class="form-group">
+            <label name="street" for="street">Event Street</label>
+            <input
+              name="street"
+              type="text"
+              class="form-control"
+              id="street"
+              placeholder="Event Street"
+              [(ngModel)]="street"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            (click)="searchByStreet(street)"
+          >
+            Search by Event Street Address
+          </button>
+        </form>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
-  </div>
 
-  <br>
+    <br />
 
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form name="city">
-        <div class="form-group">
-          <label name="city" for="city">Event Street</label>
-          <input
-            name="city"
-            type="text"
-            class="form-control"
-            id="city"
-            placeholder="Event City"
-            [(ngModel)]="city"
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary btn-block"
-          (click)="searchByCity(city)"
-        >
-          Search by Event City
-        </button>
-      </form>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form name="city">
+          <div class="form-group">
+            <label name="city" for="city">Event Street</label>
+            <input
+              name="city"
+              type="text"
+              class="form-control"
+              id="city"
+              placeholder="Event City"
+              [(ngModel)]="city"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            (click)="searchByCity(city)"
+          >
+            Search by Event City
+          </button>
+        </form>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
-  </div>
 
-  <br>
+    <br />
 
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form name="state">
-        <div class="form-group">
-          <label name="state" for="state">Event State</label>
-          <input
-            name="state"
-            type="text"
-            class="form-control"
-            id="state"
-            placeholder="Event State"
-            [(ngModel)]="state"
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary btn-block"
-          (click)="searchByState(state)"
-        >
-          Search by Event State
-        </button>
-      </form>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form name="state">
+          <div class="form-group">
+            <label name="state" for="state">Event State</label>
+            <input
+              name="state"
+              type="text"
+              class="form-control"
+              id="state"
+              placeholder="Event State"
+              [(ngModel)]="state"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            (click)="searchByState(state)"
+          >
+            Search by Event State
+          </button>
+        </form>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
-  </div>
 
-  <br>
+    <br />
 
-  <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <form name="zip">
-        <div class="form-group">
-          <label name="zip" for="zip">Event Zip</label>
-          <input
-            name="zip"
-            type="text"
-            class="form-control"
-            id="zip"
-            placeholder="Event Zip Code"
-            [(ngModel)]="zip"
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary btn-block"
-          (click)="searchByZip(zip)"
-        >
-          Search by Event Zip Code
-        </button>
-      </form>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <form name="zip">
+          <div class="form-group">
+            <label name="zip" for="zip">Event Zip</label>
+            <input
+              name="zip"
+              type="text"
+              class="form-control"
+              id="zip"
+              placeholder="Event Zip Code"
+              [(ngModel)]="zip"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            (click)="searchByZip(zip)"
+          >
+            Search by Event Zip Code
+          </button>
+        </form>
+      </div>
+      <div class="col-2"></div>
     </div>
-    <div class="col-2"></div>
   </div>
 </div>
