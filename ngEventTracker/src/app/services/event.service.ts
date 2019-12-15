@@ -131,6 +131,70 @@ export class EventService {
     );
   }
 
+  findByStreet(street: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // Authorization: "Basic " + this.authsvc.getCredentials()
+      })
+    };
+    // returns a copy of the array of todos
+    return this.http.get<Event[]>(this.baseUrl + '/search/street/' + street, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Service Error: Index Method');
+      })
+    );
+  }
+
+  findByCity(city: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // Authorization: "Basic " + this.authsvc.getCredentials()
+      })
+    };
+    // returns a copy of the array of todos
+    return this.http.get<Event[]>(this.baseUrl + '/search/city/' + city, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Service Error: Index Method');
+      })
+    );
+  }
+
+  findByState(state: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // Authorization: "Basic " + this.authsvc.getCredentials()
+      })
+    };
+    // returns a copy of the array of todos
+    return this.http.get<Event[]>(this.baseUrl + '/search/state/' + state, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Service Error: Index Method');
+      })
+    );
+  }
+
+  findByZip(zip: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+        // Authorization: "Basic " + this.authsvc.getCredentials()
+      })
+    };
+    // returns a copy of the array of todos
+    return this.http.get<Event[]>(this.baseUrl + '/search/zip/' + zip, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Service Error: Index Method');
+      })
+    );
+  }
+
   findByDateRange(start: string, end: string) {
     const httpOptions = {
       headers: new HttpHeaders({

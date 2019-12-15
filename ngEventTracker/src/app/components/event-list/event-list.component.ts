@@ -137,6 +137,42 @@ export class EventListComponent implements OnInit {
             return console.error('Search error in Component');
           });
         }
+        else if (!this.selected && this.currentRoute.snapshot.paramMap.get('street')) {
+          return this.eventsvc.findByStreet(this.currentRoute.snapshot.paramMap.get('street')).subscribe(
+            streets => {
+              this.events = streets;
+            },
+          err => {
+            return console.error('Search error in Component');
+          });
+        }
+        else if (!this.selected && this.currentRoute.snapshot.paramMap.get('city')) {
+          return this.eventsvc.findByCity(this.currentRoute.snapshot.paramMap.get('city')).subscribe(
+            citys => {
+              this.events = citys;
+            },
+          err => {
+            return console.error('Search error in Component');
+          });
+        }
+        else if (!this.selected && this.currentRoute.snapshot.paramMap.get('state')) {
+          return this.eventsvc.findByState(this.currentRoute.snapshot.paramMap.get('state')).subscribe(
+            states => {
+              this.events = states;
+            },
+          err => {
+            return console.error('Search error in Component');
+          });
+        }
+        else if (!this.selected && this.currentRoute.snapshot.paramMap.get('zip')) {
+          return this.eventsvc.findByZip(this.currentRoute.snapshot.paramMap.get('zip')).subscribe(
+            zips => {
+              this.events = zips;
+            },
+          err => {
+            return console.error('Search error in Component');
+          });
+        }
       },
       err => console.error('Reload error in Component')
     );

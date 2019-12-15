@@ -1,6 +1,6 @@
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventListComponent } from './components/event-list/event-list.component';
@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,14 +20,14 @@ import { DatePipe } from '@angular/common';
     SearchEventsComponent,
     CreateEventsComponent,
     NotFoundComponent,
-    NavigationComponent
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
-  ],
+    ],
   providers: [EventService, DatePipe],
   bootstrap: [AppComponent]
 })

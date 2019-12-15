@@ -17,6 +17,10 @@ export class SearchEventsComponent implements OnInit {
   year: string = null;
   month: string = null;
   location: string = null;
+  street: string = null;
+  city: string = null;
+  state: string = null;
+  zip: string = null;
 
 
   ngOnInit() {}
@@ -61,5 +65,25 @@ export class SearchEventsComponent implements OnInit {
   searchByLocation(location) {
     this.router.navigateByUrl("events/search/location/" + this.location);
     this.location = null;
+  }
+
+  searchByStreet(street) {
+    this.router.navigateByUrl("events/search/street/" + this.street);
+    this.street = null;
+  }
+
+  searchByCity(city) {
+    this.router.navigateByUrl("events/search/city/" + this.city);
+    this.city = null;
+  }
+
+  searchByState(state) {
+    this.router.navigateByUrl("events/search/state/" + this.state);
+    this.state = null;
+  }
+
+  searchByZip(zip) {
+    this.router.navigateByUrl("events/search/zip/" + this.zip);
+    this.zip = null;
   }
 }

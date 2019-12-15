@@ -6,25 +6,25 @@
     <table class="table table-striped table-hover">
       <thead class="thead thead-dark">
         <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Category</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>Location</th>
-          <th>Street Address</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Zip Code</th>
-          <th colspan="2">Modify this Event</th>
+          <th class="align-middle">ID</th>
+          <th class="align-middle">Title</th>
+          <th class="align-middle" colspan="4">Description</th>
+          <th class="align-middle">Category</th>
+          <th class="align-middle">Start Date</th>
+          <th class="align-middle">End Date</th>
+          <th class="align-middle">Location</th>
+          <th class="align-middle">Street Address</th>
+          <th class="align-middle">City</th>
+          <th class="align-middle">State</th>
+          <th class="align-middle">Zip Code</th>
+          <th class="align-middle" colspan="2">Modify this Event</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let event of events">
           <td (click)="displayEvent(event)">{{ event.id }}</td>
           <td (click)="displayEvent(event)">{{ event.title }}</td>
-          <td (click)="displayEvent(event)">{{ event.description }}</td>
+          <td (click)="displayEvent(event)" colspan="4">{{ event.description }}</td>
           <td (click)="displayEvent(event)">{{ event.eventCategory }}</td>
           <td (click)="displayEvent(event)">
             {{ event.startDate | date: "short" }}
@@ -72,54 +72,142 @@
   </div>
 
   <div *ngIf="updateEvent">
-    <form class="form form-control" name="editEvent">
-      <input name="id" [(ngModel)]="updateEvent.id" disabled />
-      <br />
-      <input type="text" name="title" [(ngModel)]="updateEvent.title" />
-      <br />
-      <input
-        type="text"
-        name="description"
-        [(ngModel)]="updateEvent.description"
-      />
-      <br />
-      <input
-        type="text"
-        name="eventCategory"
-        [(ngModel)]="updateEvent.eventCategory"
-      />
-      <br />
-      <input
-        type="datetime-local"
-        name="startDate"
-        value="updateEvent.startDate"
-        [(ngModel)]="updateEvent.startDate"
-      />
-      <br />
-      <input
-        type="datetime-local"
-        name="endDate"
-        value="updateEvent.endDate"
-        [(ngModel)]="updateEvent.endDate"
-      />
-      <br />
-      <input type="text" name="location" [(ngModel)]="updateEvent.location" />
-      <br />
-      <input type="text" name="street" [(ngModel)]="updateEvent.street" />
-      <br />
-      <input type="text" name="city" [(ngModel)]="updateEvent.city" />
-      <br />
-      <input type="text" name="state" [(ngModel)]="updateEvent.state" />
-      <br />
-      <input type="text" name="zip" [(ngModel)]="updateEvent.zip" />
-
-      <br />
-      <button class="btn btn-secondary" (click)="updateEvent = null">
-        Cancel
-      </button>
-      <button class="btn btn-warning" (click)="updateAnEvent(updateEvent)">
-        Save Updates
-      </button>
-    </form>
-  </div>
-
+    <div class="container">
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <form name="eventUpdate">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input
+              name="title"
+              type="text"
+              class="form-control"
+              id="title"
+              placeholder="Event Title"
+              [(ngModel)]="updateEvent.title"
+              [ngModelOptions]="{standalone: true}"
+              />
+            </div>
+            <div class="form-group">
+              <label  for="description">Description</label>
+              <input
+              name="description"
+              type="text"
+              class="form-control"
+              id="description"
+              placeholder="Event Description"
+              [(ngModel)]="updateEvent.description"
+              [ngModelOptions]="{standalone: true}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="eventCategory">Category</label>
+              <input
+              name="eventCategory"
+              type="text"
+              class="form-control"
+              id="eventCategory"
+              placeholder="Event Category"
+              [(ngModel)]="updateEvent.eventCategory"
+              [ngModelOptions]="{standalone: true}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="startDate">Start Date</label>
+              <input
+              name="startDate"
+              type="datetime-local"
+              class="form-control"
+              id="startDate"
+              [(ngModel)]="updateEvent.startDate"
+              [ngModelOptions]="{standalone: true}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="endDate">End Date</label>
+              <input
+              name="endDate"
+              type="datetime-local"
+              class="form-control"
+              id="endDate"
+              [(ngModel)]="updateEvent.endDate"
+              [ngModelOptions]="{standalone: true}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input
+              name="location"
+              type="text"
+              class="form-control"
+              id="location"
+              placeholder="Event Location"
+              [(ngModel)]="updateEvent.location"
+              [ngModelOptions]="{standalone: true}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="street">Street</label>
+              <input
+              name="street"
+              type="text"
+              class="form-control"
+              id="street"
+              placeholder="Event Street Address"
+              [(ngModel)]="updateEvent.street"
+              [ngModelOptions]="{standalone: true}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input
+              name="city"
+              type="text"
+              class="form-control"
+              id="city"
+              placeholder="Event City"
+              [(ngModel)]="updateEvent.city"
+              [ngModelOptions]="{standalone: true}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="state">State</label>
+              <input
+              name="state"
+              type="text"
+              class="form-control"
+              id="state"
+              placeholder="Event State"
+              [(ngModel)]="updateEvent.state"
+              [ngModelOptions]="{standalone: true}"
+              />
+            </div>
+            <div class="form-group">
+              <label for="zip">Zip</label>
+              <input
+              name="zip"
+              type="text"
+              class="form-control"
+              id="zip"
+              placeholder="Event Zip Code"
+              [(ngModel)]="updateEvent.zip"
+              [ngModelOptions]="{standalone: true}"
+              />
+            </div>
+            <div class="form-group">
+              <button class="btn btn-secondary" (click)="updateEvent = null">
+                Cancel
+              </button>
+              <button
+                class="btn btn-warning"
+                (click)="updateAnEvent(updateEvent)"
+              >
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </div>

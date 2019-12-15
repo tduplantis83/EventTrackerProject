@@ -1,9 +1,5 @@
-import { EventListComponent } from "src/app/components/event-list/event-list.component";
-import { EventService } from "src/app/services/event.service";
-import { Component, OnInit } from "@angular/core";
-import { Event } from "src/app/models/event";
+import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
   selector: "app-navigation",
@@ -12,6 +8,10 @@ import { VirtualTimeScheduler } from 'rxjs';
 })
 export class NavigationComponent implements OnInit {
   constructor(private currentRoute: ActivatedRoute, private router: Router) {}
+  isCollapsed = true;
+  toggleCollapsed(): void {
+    this.isCollapsed = !this.isCollapsed;
+  }
   keyword: string = null;
   search = null;
 
