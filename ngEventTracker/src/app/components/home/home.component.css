@@ -8,9 +8,11 @@
 
 h2 {
   font-style: italic;
+  color: white;
 }
 
 h1 {
   font-weight: bold;
   font-family: fantasy;
+  color: white;
 }
