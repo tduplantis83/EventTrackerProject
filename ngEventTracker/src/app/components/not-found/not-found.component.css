@@ -1,0 +1,7 @@
+.container-fluid{
+  background-image:  url('HTML-404-Error-Page.gif');
+  background-repeat: no-repeat;
+	background-size: cover;
+  background-position: center;
+  text-align: center;
+}
