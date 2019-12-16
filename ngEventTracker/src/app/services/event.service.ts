@@ -4,13 +4,16 @@ import { catchError, tap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { Event } from 'src/app/models/event';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventService {
   // F I E L D S
-  private baseUrl = 'http://localhost:8100/api/events';
+  // private baseUrl = 'http://localhost:8100/api/events';
+  private baseUrl = environment.baseUrl;
+  private fullUrl = this.baseUrl + 'api/events';
 
   // C O N S T R U C T O R
   constructor(
@@ -27,7 +30,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -43,7 +46,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl + '/search/' + keyword, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl + '/search/' + keyword, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -59,7 +62,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl + '/search/title/' + title, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl + '/search/title/' + title, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -75,7 +78,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl + '/search/description/' + desc, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl + '/search/description/' + desc, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -91,7 +94,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl + '/search/category/' + cat, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl + '/search/category/' + cat, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -107,7 +110,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl + '/search/year/' + year, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl + '/search/year/' + year, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -123,7 +126,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl + '/search/location/' + location, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl + '/search/location/' + location, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -139,7 +142,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl + '/search/street/' + street, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl + '/search/street/' + street, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -155,7 +158,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl + '/search/city/' + city, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl + '/search/city/' + city, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -171,7 +174,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl + '/search/state/' + state, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl + '/search/state/' + state, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -187,7 +190,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl + '/search/zip/' + zip, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl + '/search/zip/' + zip, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -203,7 +206,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl + '/search/dateRange/' + start + '/' + end, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl + '/search/dateRange/' + start + '/' + end, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -219,7 +222,7 @@ export class EventService {
       })
     };
     // returns a copy of the array of todos
-    return this.http.get<Event[]>(this.baseUrl + '/search/year/month/' + year + '/' + month, httpOptions).pipe(
+    return this.http.get<Event[]>(this.fullUrl + '/search/year/month/' + year + '/' + month, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -235,7 +238,7 @@ export class EventService {
       })
     };
 
-    return this.http.get<Event>(this.baseUrl + '/' + id, httpOptions).pipe(
+    return this.http.get<Event>(this.fullUrl + '/' + id, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Index Method');
@@ -251,7 +254,7 @@ export class EventService {
       })
     };
 
-    return this.http.post<Event>(this.baseUrl, newEvent, httpOptions).pipe(
+    return this.http.post<Event>(this.fullUrl, newEvent, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Create Method');
@@ -268,7 +271,7 @@ export class EventService {
     };
 
     return this.http
-      .put<Event>(this.baseUrl + '/' + id, newEvent, httpOptions)
+      .put<Event>(this.fullUrl + '/' + id, newEvent, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -285,7 +288,7 @@ export class EventService {
       })
     };
 
-    return this.http.delete<any>(this.baseUrl + '/' + id, httpOptions).pipe(
+    return this.http.delete<any>(this.fullUrl + '/' + id, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Service Error: Create Method');
