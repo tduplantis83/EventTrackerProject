@@ -219,7 +219,7 @@ export class EventListComponent implements OnInit {
   }
 
   confirmUpdateMethod(event: Event) {
-    if(confirm("Are you sure to UPDATE the " + event.title + " event?")) {
+    if(confirm("Are you sure you want to UPDATE the " + event.title + " event?")) {
         this.updateAnEvent(event);
     }
   }
@@ -236,7 +236,7 @@ export class EventListComponent implements OnInit {
   }
 
   confirmDeleteMethod(event: Event) {
-    if(confirm("Are you sure to DELETE the " + event.title + " event?")) {
+    if(confirm("Are you sure you want to DELETE the " + event.title + " event?")) {
         this.deleteEvent(event.id);
     }
   }
